@@ -16,22 +16,25 @@ class Scenario {
     var paragraphThree : String?
     var optionOne : String?
     var optionTwo : String?
+    var scenarioNumber : Int?
     
     init (act: Int, chapter: Int) {
         self.act = act
         self.chapter = chapter
     }
+
+//  Old primitive Scenario changer
     
-    func nextScenario (act: Int, chapter: Int, paragraphOne: String?, paragraphTwo: String?, paragraphThree: String?, optionOne: String?, optionTwo: String?) {
-        self.act = act
-        self.chapter = chapter
-        self.paragraphOne = paragraphOne
-        self.paragraphTwo = paragraphTwo
-        self.paragraphThree = paragraphThree
-        self.optionOne = optionOne
-        self.optionTwo = optionTwo
-    }
-    
+//    func nextScenario (act: Int, chapter: Int, paragraphOne: String?, paragraphTwo: String?, paragraphThree: String?, optionOne: String?, optionTwo: String?) {
+//        self.act = act
+//        self.chapter = chapter
+//        self.paragraphOne = paragraphOne
+//        self.paragraphTwo = paragraphTwo
+//        self.paragraphThree = paragraphThree
+//        self.optionOne = optionOne
+//        self.optionTwo = optionTwo
+//    }
+//
     func getParagraph() -> String {
         var paragraph = ""
         if let paragraphOne = paragraphOne, let paragraphTwo = paragraphTwo, let paragraphThree = paragraphThree {
@@ -43,5 +46,6 @@ class Scenario {
         }
         return paragraph
     }
+    
     
 }

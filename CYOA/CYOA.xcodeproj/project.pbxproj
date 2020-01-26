@@ -16,6 +16,8 @@
 		0C16809623DC641600500538 /* CYOATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C16809523DC641600500538 /* CYOATests.swift */; };
 		0C1680A123DC641600500538 /* CYOAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680A023DC641600500538 /* CYOAUITests.swift */; };
 		0C1680B323DC6D8400500538 /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680B223DC6D8400500538 /* Scenario.swift */; };
+		0C1680B523DDD63500500538 /* ScenarioTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680B423DDD63500500538 /* ScenarioTracker.swift */; };
+		0C1680B723DDDC3300500538 /* PossibleScenarios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680B623DDDC3300500538 /* PossibleScenarios.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		0C1680A023DC641600500538 /* CYOAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CYOAUITests.swift; sourceTree = "<group>"; };
 		0C1680A223DC641600500538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C1680B223DC6D8400500538 /* Scenario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
+		0C1680B423DDD63500500538 /* ScenarioTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenarioTracker.swift; sourceTree = "<group>"; };
+		0C1680B623DDDC3300500538 /* PossibleScenarios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleScenarios.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,11 +108,13 @@
 				0C16807E23DC641300500538 /* AppDelegate.swift */,
 				0C16808023DC641300500538 /* SceneDelegate.swift */,
 				0C16808223DC641300500538 /* ViewController.swift */,
+				0C1680B423DDD63500500538 /* ScenarioTracker.swift */,
 				0C16808423DC641300500538 /* Main.storyboard */,
 				0C16808723DC641600500538 /* Assets.xcassets */,
 				0C16808923DC641600500538 /* LaunchScreen.storyboard */,
 				0C16808C23DC641600500538 /* Info.plist */,
 				0C1680B223DC6D8400500538 /* Scenario.swift */,
+				0C1680B623DDDC3300500538 /* PossibleScenarios.swift */,
 			);
 			path = CYOA;
 			sourceTree = "<group>";
@@ -264,8 +270,10 @@
 			files = (
 				0C16808323DC641300500538 /* ViewController.swift in Sources */,
 				0C1680B323DC6D8400500538 /* Scenario.swift in Sources */,
+				0C1680B723DDDC3300500538 /* PossibleScenarios.swift in Sources */,
 				0C16807F23DC641300500538 /* AppDelegate.swift in Sources */,
 				0C16808123DC641300500538 /* SceneDelegate.swift in Sources */,
+				0C1680B523DDD63500500538 /* ScenarioTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
