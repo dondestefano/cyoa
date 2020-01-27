@@ -16,7 +16,9 @@ class Scenario {
     var paragraphThree : String?
     var optionOne : String?
     var optionTwo : String?
-    var scenarioNumber : Int?
+    var scenarioNumber : String?
+    
+    //var possibleOptions[options]()
     
     init (act: Int, chapter: Int) {
         self.act = act
@@ -25,18 +27,20 @@ class Scenario {
 
 //  Old primitive Scenario changer
     
-//    func nextScenario (act: Int, chapter: Int, paragraphOne: String?, paragraphTwo: String?, paragraphThree: String?, optionOne: String?, optionTwo: String?) {
-//        self.act = act
-//        self.chapter = chapter
-//        self.paragraphOne = paragraphOne
-//        self.paragraphTwo = paragraphTwo
-//        self.paragraphThree = paragraphThree
-//        self.optionOne = optionOne
-//        self.optionTwo = optionTwo
-//    }
-//
+    init (act: Int, chapter: Int, paragraphOne: String?, paragraphTwo: String?, paragraphThree: String?, optionOne: String?, optionTwo: String?, scenarioNumber: String?) {
+        self.act = act
+        self.chapter = chapter
+        self.paragraphOne = paragraphOne
+        self.paragraphTwo = paragraphTwo
+        self.paragraphThree = paragraphThree
+        self.optionOne = optionOne
+        self.optionTwo = optionTwo
+        self.scenarioNumber = scenarioNumber
+    }
+
     func getParagraph() -> String {
         var paragraph = ""
+        //Convert all paragraphs to one string even if the scenario doesn't contain all three.
         if let paragraphOne = paragraphOne, let paragraphTwo = paragraphTwo, let paragraphThree = paragraphThree {
             paragraph = "\(paragraphOne) \(paragraphTwo) \(paragraphThree)"
         } else if let paragraphOne = paragraphOne, let paragraphThree = paragraphThree {

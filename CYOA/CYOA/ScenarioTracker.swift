@@ -9,14 +9,40 @@
 import Foundation
 
 class ScenarioTracker {
-    private var story = [Scenario]()
-    private var possibleStory = PossibleScenarios()
+    var story = [Scenario]()
+    var currentScenarioIndex = 0
+    var possibleStory = PossibleScenarios()
     
-    func calculateNextScenario(currentScenario: Int, choosenPath: Int) {
-        let nextScenario = (currentScenario + choosenPath)
-        if let newScenario = possibleStory.getScenario(scenarioNumber : nextScenario) {
-        story.append(newScenario)
+    func newStory() -> Scenario {
+        if let firstScenario = possibleStory.getScenario(scenarioNumber: "11"){
+            self.story.append(firstScenario)
         }
+        return self.story[0]
+    }
+
+    
+    func calculateNextScenario(chosenPathValue: Int) {
+        //get the next scenario and add it to the story
+        let currentScenario = story[currentScenarioIndex]
+        let act = currentScenario.act
+        let chapter = currentScenario.chapter
         
+        if var currentChapter = chapter, var currentAct = act {
+            if currentChapter < 5 {
+                currentChapter += 1
+            } else {
+                currentAct += 1
+                currentChapter = 1
+            }
+            let nextChapter = String(currentAct) + String(currentChapter)
+            let chosenPath = String(chosenPathValue)
+            let nextScenario = nextChapter + chosenPath
+            if let newScenario = possibleStory.getScenario(scenarioNumber: nextScenario) {
+                self.story.append(newScenario)
+                //update index to keep track of which line in the array the story is at
+                self.currentScenarioIndex += 1
+            }
+        }
+
     }
 }

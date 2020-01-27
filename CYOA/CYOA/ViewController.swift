@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var currentScenario = Scenario (act: 0, chapter: 0)
+    let scenarioTracker = ScenarioTracker()
     
     @IBOutlet weak var storyText: UITextView!
     
@@ -19,34 +20,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var optionTwoButton: UIButton!
     
     override func viewDidLoad() {
+        scenarioTracker.possibleStory.createScenarios()
         super.viewDidLoad()
-        
-        currentScenario.nextScenario(act: 1, chapter: 1, paragraphOne: "Hej", paragraphTwo: "Vad", paragraphThree: "Händer", optionOne: "Inget", optionTwo: "massor")
-        
-        updateStory()
-        
+        currentScenario = scenarioTracker.newStory()
+        nextPage()
         
         
         // Do any additional setup after loading the view.
     }
 
     @IBAction func pressedButtonOne(_ sender: Any) {
-        currentScenario.nextScenario(act: 1, chapter: 2, paragraphOne: "Låter", paragraphTwo: "Mega", paragraphThree: "Trist", optionOne: "K", optionTwo: "Bry")
-        updateStory()
-        
+        choosePath(path: 1)
     }
     
     @IBAction func pressedButtonTwo(_ sender: Any) {
-            currentScenario.nextScenario(act: 1, chapter: 2, paragraphOne: "Lol.", paragraphTwo: "Berätta", paragraphThree: "Mer", optionOne: "Nej", optionTwo: "Ok")
-        updateStory()
+        choosePath(path: 2)
     }
     
-    func updateStory() {
+    func nextPage() {
         let currentParagraph = currentScenario.getParagraph()
-        
         storyText.text = currentParagraph
         optionOneButton.setTitle("\(currentScenario.optionOne ?? "")", for: .normal)
         optionTwoButton.setTitle("\(currentScenario.optionTwo ?? "")", for: .normal)
     }
     
+    func choosePath(path: Int) {
+        scenarioTracker.calculateNextScenario(chosenPathValue: path)
+        currentScenario = scenarioTracker.story[scenarioTracker.currentScenarioIndex]
+        nextPage()
+    }
 }
