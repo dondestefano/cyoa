@@ -8,40 +8,40 @@
 
 import Foundation
 
-class PossibleScenarios {
-    
-    private var everyScenario = [Scenario]()
-    
-    func getScenario(scenarioNumber: String) -> Scenario? {
-        var currentIndex = 0
-        for Scenario in everyScenario {
-            if let scenario = Scenario.scenarioNumber {
-                print(scenarioNumber)
-                if scenario == scenarioNumber {
-                                        print(currentIndex)
-                        return everyScenario[currentIndex]
-                }
-            currentIndex += 1
-                }
-        }
-        return nil
-    }
-    
-    func createScenarios() {
-        let oneOne = Scenario(act: 1, chapter: 1, paragraphOne: "Typ en hel del text osv.", paragraphTwo: "Välj något här nere.", paragraphThree: "Det blir kul.", optionOne: "K", optionTwo: "Bry", scenarioNumber: "11")
-        self.everyScenario.append(oneOne)
-        
-        let oneTwoOne = Scenario(act: 1, chapter: 2, paragraphOne: "Originellt", paragraphTwo: nil, paragraphThree: "Verkligen", optionOne: "Vad vill du att jag ska göra då?", optionTwo: "Drygt!?", scenarioNumber: "121")
-        self.everyScenario.append(oneTwoOne)
-        
-        let oneTwoTwo = Scenario(act: 1, chapter: 2, paragraphOne: "Hoppa bre", paragraphTwo: "Ska ge te dig", paragraphThree: nil, optionOne: "Kom då!", optionTwo: "Nej", scenarioNumber: "122")
-        self.everyScenario.append(oneTwoTwo)
-        
-        let oneThreeOneOne = Scenario(act: 1, chapter: 3, paragraphOne: "1", paragraphTwo: "2", paragraphThree: nil, optionOne: "Kom då!", optionTwo: "Nej", scenarioNumber: "131")
-        self.everyScenario.append(oneThreeOneOne)
-        
-        let oneThreeTwoOne = Scenario(act: 1, chapter: 3, paragraphOne: "13", paragraphTwo: "21", paragraphThree: nil, optionOne: "Kom då!", optionTwo: "Nej", scenarioNumber: "132")
-        self.everyScenario.append(oneThreeTwoOne)
-    }
-    
-}
+//class PossibleScenarios {
+//
+//    private var everyScenario = [Scenario]()
+//
+//    func getScenario(scenarioNumber: String) -> Scenario? {
+//        var currentIndex = 0
+//        for Scenario in everyScenario {
+//            if let scenario = Scenario.scenarioNumber {
+//                print(scenarioNumber)
+//                if scenario == scenarioNumber {
+//                                        print(currentIndex)
+//                        return everyScenario[currentIndex]
+//                }
+//            currentIndex += 1
+//                }
+//        }
+//        return nil
+//    }
+//
+//    func createScenarios() {
+//        let oneOne = Scenario(act: 1, chapter: 1, paragraphOne: "Typ en hel del text osv.", paragraphTwo: "Välj något här nere.", paragraphThree: "Det blir kul.", optionOne: "K", optionTwo: "Bry", scenarioNumber: "11")
+//        self.everyScenario.append(oneOne)
+//
+//        let oneTwoOne = Scenario(act: 1, chapter: 2, paragraphOne: "Originellt", paragraphTwo: nil, paragraphThree: "Verkligen", optionOne: "Vad vill du att jag ska göra då?", optionTwo: "Drygt!?", scenarioNumber: "121")
+//        self.everyScenario.append(oneTwoOne)
+//
+//        let oneTwoTwo = Scenario(act: 1, chapter: 2, paragraphOne: "Hoppa bre", paragraphTwo: "Ska ge te dig", paragraphThree: nil, optionOne: "Kom då!", optionTwo: "Nej", scenarioNumber: "122")
+//        self.everyScenario.append(oneTwoTwo)
+//
+//        let oneThreeOneOne = Scenario(act: 1, chapter: 3, paragraphOne: "1", paragraphTwo: "2", paragraphThree: nil, optionOne: "Kom då!", optionTwo: "Nej", scenarioNumber: "131")
+//        self.everyScenario.append(oneThreeOneOne)
+//
+//        let oneThreeTwoOne = Scenario(act: 1, chapter: 3, paragraphOne: "13", paragraphTwo: "21", paragraphThree: nil, optionOne: "Kom då!", optionTwo: "Nej", scenarioNumber: "132")
+//        self.everyScenario.append(oneThreeTwoOne)
+//    }
+//
+//}
