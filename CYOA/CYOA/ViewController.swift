@@ -39,6 +39,7 @@ class ViewController: UIViewController {
     
     func nextPage() {
         let currentParagraph = currentScenario.getParagraph()
+        storyText.setContentOffset(.zero, animated: true)
         storyText.text = currentParagraph
         optionOneButton.setTitle("\(currentScenario.optionOne ?? "")", for: .normal)
         optionTwoButton.setTitle("\(currentScenario.optionTwo ?? "")", for: .normal)
@@ -47,6 +48,7 @@ class ViewController: UIViewController {
     func choosePath(path: Int) {
         scenarioTracker.calculateNextScenario(chosenPathValue: path)
         currentScenario = scenarioTracker.story[scenarioTracker.currentScenarioIndex]
+        storyText.setContentOffset(.zero, animated: false)
         nextPage()
     }
 }
