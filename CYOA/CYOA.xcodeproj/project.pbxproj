@@ -15,11 +15,11 @@
 		0C16808B23DC641600500538 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C16808923DC641600500538 /* LaunchScreen.storyboard */; };
 		0C16809623DC641600500538 /* CYOATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C16809523DC641600500538 /* CYOATests.swift */; };
 		0C1680A123DC641600500538 /* CYOAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680A023DC641600500538 /* CYOAUITests.swift */; };
-		0C1680B323DC6D8400500538 /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680B223DC6D8400500538 /* Scenario.swift */; };
-		0C1680B523DDD63500500538 /* ScenarioTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680B423DDD63500500538 /* ScenarioTracker.swift */; };
-		0C1680B723DDDC3300500538 /* PossibleScenarios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680B623DDDC3300500538 /* PossibleScenarios.swift */; };
+		0C1680B323DC6D8400500538 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680B223DC6D8400500538 /* Chapter.swift */; };
 		0CAD447E23E1E4FC0062CD7F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD447D23E1E4FC0062CD7F /* Player.swift */; };
 		0CAD448023E1FD5A0062CD7F /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD447F23E1FD5A0062CD7F /* Story.swift */; };
+		0CAD44C623E356D40062CD7F /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD44C523E356D40062CD7F /* Attribute.swift */; };
+		0CAD44C823E35D5F0062CD7F /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD44C723E35D5F0062CD7F /* Option.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,11 +54,11 @@
 		0C16809C23DC641600500538 /* CYOAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CYOAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C1680A023DC641600500538 /* CYOAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CYOAUITests.swift; sourceTree = "<group>"; };
 		0C1680A223DC641600500538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0C1680B223DC6D8400500538 /* Scenario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
-		0C1680B423DDD63500500538 /* ScenarioTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenarioTracker.swift; sourceTree = "<group>"; };
-		0C1680B623DDDC3300500538 /* PossibleScenarios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleScenarios.swift; sourceTree = "<group>"; };
+		0C1680B223DC6D8400500538 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		0CAD447D23E1E4FC0062CD7F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		0CAD447F23E1FD5A0062CD7F /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		0CAD44C523E356D40062CD7F /* Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
+		0CAD44C723E35D5F0062CD7F /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,12 +115,12 @@
 				0C16808423DC641300500538 /* Main.storyboard */,
 				0C16808723DC641600500538 /* Assets.xcassets */,
 				0C16808923DC641600500538 /* LaunchScreen.storyboard */,
-				0C1680B223DC6D8400500538 /* Scenario.swift */,
+				0C1680B223DC6D8400500538 /* Chapter.swift */,
 				0CAD447D23E1E4FC0062CD7F /* Player.swift */,
 				0CAD447F23E1FD5A0062CD7F /* Story.swift */,
+				0CAD44C523E356D40062CD7F /* Attribute.swift */,
+				0CAD44C723E35D5F0062CD7F /* Option.swift */,
 				0C16808C23DC641600500538 /* Info.plist */,
-				0C1680B623DDDC3300500538 /* PossibleScenarios.swift */,
-				0C1680B423DDD63500500538 /* ScenarioTracker.swift */,
 			);
 			path = CYOA;
 			sourceTree = "<group>";
@@ -274,13 +274,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CAD44C823E35D5F0062CD7F /* Option.swift in Sources */,
 				0C16808323DC641300500538 /* ViewController.swift in Sources */,
-				0C1680B323DC6D8400500538 /* Scenario.swift in Sources */,
-				0C1680B723DDDC3300500538 /* PossibleScenarios.swift in Sources */,
+				0C1680B323DC6D8400500538 /* Chapter.swift in Sources */,
 				0C16807F23DC641300500538 /* AppDelegate.swift in Sources */,
 				0CAD447E23E1E4FC0062CD7F /* Player.swift in Sources */,
+				0CAD44C623E356D40062CD7F /* Attribute.swift in Sources */,
 				0C16808123DC641300500538 /* SceneDelegate.swift in Sources */,
-				0C1680B523DDD63500500538 /* ScenarioTracker.swift in Sources */,
 				0CAD448023E1FD5A0062CD7F /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,56 +8,35 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource  {
     
-//    var currentScenario = Scenario (act: 0, chapter: 0)
-//    let scenarioTracker = ScenarioTracker()
-    
-    var myStory = Story(playerName: "Miche")
+    var myStory = Story(playerName: "Michael")
+    let optionID = "optionsCellID"
     
     @IBOutlet weak var storyText: UITextView!
     
     @IBOutlet weak var chapterLabel: UILabel!
-    
-    @IBOutlet weak var optionOneButton: UIButton!
-    
-    @IBOutlet weak var optionTwoButton: UIButton!
+
+    @IBOutlet weak var optionsTableView: UITableView!
     
     override func viewDidLoad() {
-        myStory.chapterOne()
-//        scenarioTracker.possibleStory.createScenarios()
         super.viewDidLoad()
-//        currentScenario = scenarioTracker.newStory()
-        nextPage()
-        
-        
+        optionsTableView.dataSource = self
         // Do any additional setup after loading the view.
-    }
-
-    @IBAction func pressedButtonOne(_ sender: Any) {
-        choosePath(path: 1)
-    }
-    
-    @IBAction func pressedButtonTwo(_ sender: Any) {
-        choosePath(path: 2)
-    }
-    
-    func nextPage() {
-        let currentParagraph = myStory.currentScenario.getParagraph()
         
-        storyText.setContentOffset(.zero, animated: true)
-        chapterLabel.text = ("Chapter: \(myStory.currentScenario.chapter ?? 0)")
-        storyText.text = currentParagraph
-        optionOneButton.setTitle("\(myStory.currentScenario.optionOne ?? "")", for: .normal)
-        optionTwoButton.setTitle("\(myStory.currentScenario.optionTwo ?? "")", for: .normal)
+        guard let currentStoryText = myStory.currentChapter.chapterText else {return}
+        storyText.text = currentStoryText
     }
     
-    func choosePath(path: Int) {
-//        scenarioTracker.calculateNextScenario(chosenPathValue: path)
-//        currentScenario = scenarioTracker.story[scenarioTracker.currentScenarioIndex]
-        guard let chapter = myStory.currentScenario.chapter else {return}
-        myStory.nextChapter(currentChapter: chapter, decision: path)
-        storyText.setContentOffset(.zero, animated: false)
-        nextPage()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        myStory.currentChapter.chapterOptions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: optionID, for: indexPath)
+        let option = myStory.currentChapter.chapterOptions[indexPath.row]
+        cell.textLabel?.text = option.name
+        
+        return cell
     }
 }
