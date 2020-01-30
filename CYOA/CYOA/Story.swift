@@ -70,7 +70,7 @@ class Story {
             choice = "yes"
             paragraphOne = "Not just going by habit? I respect that."
         }
-        let chapterThree = Scenario(act: 1, chapter: 3, paragraphOne: paragraphOne, paragraphTwo: "\nBut you're not here to answer yes or no questions.", paragraphThree: "\nYou want to hear a story don't you \(name)?", optionOne: "Yes!", optionTwo: "ANother yes or no??")
+        let chapterThree = Scenario(act: 1, chapter: 3, paragraphOne: paragraphOne, paragraphTwo: "\nBut you're not here to answer yes or no questions.", paragraphThree: "\nYou want to hear a story don't you \(name)?", optionOne: "Yes!", optionTwo: "Another yes or no question?")
         path.append(chapterThree)
         currentScenario = chapterThree
         

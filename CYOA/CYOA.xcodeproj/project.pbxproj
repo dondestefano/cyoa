@@ -112,15 +112,15 @@
 				0C16807E23DC641300500538 /* AppDelegate.swift */,
 				0C16808023DC641300500538 /* SceneDelegate.swift */,
 				0C16808223DC641300500538 /* ViewController.swift */,
-				0C1680B423DDD63500500538 /* ScenarioTracker.swift */,
 				0C16808423DC641300500538 /* Main.storyboard */,
 				0C16808723DC641600500538 /* Assets.xcassets */,
 				0C16808923DC641600500538 /* LaunchScreen.storyboard */,
-				0C16808C23DC641600500538 /* Info.plist */,
 				0C1680B223DC6D8400500538 /* Scenario.swift */,
-				0C1680B623DDDC3300500538 /* PossibleScenarios.swift */,
 				0CAD447D23E1E4FC0062CD7F /* Player.swift */,
 				0CAD447F23E1FD5A0062CD7F /* Story.swift */,
+				0C16808C23DC641600500538 /* Info.plist */,
+				0C1680B623DDDC3300500538 /* PossibleScenarios.swift */,
+				0C1680B423DDD63500500538 /* ScenarioTracker.swift */,
 			);
 			path = CYOA;
 			sourceTree = "<group>";
