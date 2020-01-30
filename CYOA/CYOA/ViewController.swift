@@ -10,19 +10,24 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var currentScenario = Scenario (act: 0, chapter: 0)
-    let scenarioTracker = ScenarioTracker()
+//    var currentScenario = Scenario (act: 0, chapter: 0)
+//    let scenarioTracker = ScenarioTracker()
+    
+    var myStory = Story(playerName: "Miche")
     
     @IBOutlet weak var storyText: UITextView!
+    
+    @IBOutlet weak var chapterLabel: UILabel!
     
     @IBOutlet weak var optionOneButton: UIButton!
     
     @IBOutlet weak var optionTwoButton: UIButton!
     
     override func viewDidLoad() {
-        scenarioTracker.possibleStory.createScenarios()
+        myStory.chapterOne()
+//        scenarioTracker.possibleStory.createScenarios()
         super.viewDidLoad()
-        currentScenario = scenarioTracker.newStory()
+//        currentScenario = scenarioTracker.newStory()
         nextPage()
         
         
@@ -38,16 +43,20 @@ class ViewController: UIViewController {
     }
     
     func nextPage() {
-        let currentParagraph = currentScenario.getParagraph()
+        let currentParagraph = myStory.currentScenario.getParagraph()
+        
         storyText.setContentOffset(.zero, animated: true)
+        chapterLabel.text = ("Chapter: \(myStory.currentScenario.chapter ?? 0)")
         storyText.text = currentParagraph
-        optionOneButton.setTitle("\(currentScenario.optionOne ?? "")", for: .normal)
-        optionTwoButton.setTitle("\(currentScenario.optionTwo ?? "")", for: .normal)
+        optionOneButton.setTitle("\(myStory.currentScenario.optionOne ?? "")", for: .normal)
+        optionTwoButton.setTitle("\(myStory.currentScenario.optionTwo ?? "")", for: .normal)
     }
     
     func choosePath(path: Int) {
-        scenarioTracker.calculateNextScenario(chosenPathValue: path)
-        currentScenario = scenarioTracker.story[scenarioTracker.currentScenarioIndex]
+//        scenarioTracker.calculateNextScenario(chosenPathValue: path)
+//        currentScenario = scenarioTracker.story[scenarioTracker.currentScenarioIndex]
+        guard let chapter = myStory.currentScenario.chapter else {return}
+        myStory.nextChapter(currentChapter: chapter, decision: path)
         storyText.setContentOffset(.zero, animated: false)
         nextPage()
     }
