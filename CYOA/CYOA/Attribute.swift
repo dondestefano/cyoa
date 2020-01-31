@@ -18,11 +18,7 @@ class Attribute {
     }
     
     func updateValue(value: Int){
-        if value > 0 {
-            self.value += value
-        } else if value < 0 {
-            self.value -= value
-        }
+        self.value += value
     }
     
     func checkValue() -> Int {
