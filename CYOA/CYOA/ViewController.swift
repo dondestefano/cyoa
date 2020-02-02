@@ -25,7 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         guard let choice = currentOption else {return}
         myStory.pathChosen(choice: choice)
         print(myStory.player?.checkAttribute(attributeToCheck: choice.changedAttribute ?? "") ?? 0)
-//        myStory.getText()
+            myStory.getText()
     }
     
     override func viewDidLoad() {

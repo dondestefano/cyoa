@@ -39,11 +39,14 @@ class Story {
         player?.updateAttribute(attributeToUpdate: choice.changedAttribute ?? "", value: choice.changeAttributeValue ?? 0)
     }
     
+    
 //    func getText() {
 //        let textRef = db.collection("chapters")
 //        textRef.document("chapterID").getDocument(){ (document , error) in
 //            if let document = document, document.exists {
-//                print(document.data() ?? "")
+//                if let text: String = document.data() as? String {
+//                    self.currentChapter.chapterText = text
+//                }
 //            }
 //        }
 //    }
