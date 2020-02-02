@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase;
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
@@ -24,6 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         guard let choice = currentOption else {return}
         myStory.pathChosen(choice: choice)
         print(myStory.player?.checkAttribute(attributeToCheck: choice.changedAttribute ?? "") ?? 0)
+//        myStory.getText()
     }
     
     override func viewDidLoad() {

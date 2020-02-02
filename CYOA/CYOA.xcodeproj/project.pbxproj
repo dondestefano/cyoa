@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,9 @@
 		0CAD448023E1FD5A0062CD7F /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD447F23E1FD5A0062CD7F /* Story.swift */; };
 		0CAD44C623E356D40062CD7F /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD44C523E356D40062CD7F /* Attribute.swift */; };
 		0CAD44C823E35D5F0062CD7F /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD44C723E35D5F0062CD7F /* Option.swift */; };
+		6D300B8A092BB3B2480BADBB /* Pods_CYOA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE197563FEE974D6ACF016B6 /* Pods_CYOA.framework */; };
+		8059A370C11BEE93BAFA9C67 /* Pods_CYOA_CYOAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB639D174B33B3E49EBECCB /* Pods_CYOA_CYOAUITests.framework */; };
+		832B97FDFC20D2D1DA34D4B2 /* Pods_CYOATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7240FE9E67AEAC6AAAC3372 /* Pods_CYOATests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B6E88379644A4889C9392A1 /* Pods-CYOA-CYOAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOA-CYOAUITests.debug.xcconfig"; path = "Target Support Files/Pods-CYOA-CYOAUITests/Pods-CYOA-CYOAUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0C16807B23DC641300500538 /* CYOA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYOA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C16807E23DC641300500538 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C16808023DC641300500538 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +63,14 @@
 		0CAD447F23E1FD5A0062CD7F /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		0CAD44C523E356D40062CD7F /* Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
 		0CAD44C723E35D5F0062CD7F /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		2BD0DEED71F7851C833643EC /* Pods-CYOA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOA.release.xcconfig"; path = "Target Support Files/Pods-CYOA/Pods-CYOA.release.xcconfig"; sourceTree = "<group>"; };
+		4D66ECF3C67C6C0B0E62DEFC /* Pods-CYOATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOATests.release.xcconfig"; path = "Target Support Files/Pods-CYOATests/Pods-CYOATests.release.xcconfig"; sourceTree = "<group>"; };
+		5AD81810B3700D8524A71B81 /* Pods-CYOATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOATests.debug.xcconfig"; path = "Target Support Files/Pods-CYOATests/Pods-CYOATests.debug.xcconfig"; sourceTree = "<group>"; };
+		5CD5283B3514BF8BF8053568 /* Pods-CYOA-CYOAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOA-CYOAUITests.release.xcconfig"; path = "Target Support Files/Pods-CYOA-CYOAUITests/Pods-CYOA-CYOAUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A7240FE9E67AEAC6AAAC3372 /* Pods_CYOATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CYOATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE180CD9A7D5B15111745ADD /* Pods-CYOA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOA.debug.xcconfig"; path = "Target Support Files/Pods-CYOA/Pods-CYOA.debug.xcconfig"; sourceTree = "<group>"; };
+		CAB639D174B33B3E49EBECCB /* Pods_CYOA_CYOAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CYOA_CYOAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE197563FEE974D6ACF016B6 /* Pods_CYOA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CYOA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D300B8A092BB3B2480BADBB /* Pods_CYOA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				832B97FDFC20D2D1DA34D4B2 /* Pods_CYOATests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8059A370C11BEE93BAFA9C67 /* Pods_CYOA_CYOAUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +108,8 @@
 				0C16809423DC641600500538 /* CYOATests */,
 				0C16809F23DC641600500538 /* CYOAUITests */,
 				0C16807C23DC641300500538 /* Products */,
+				E0114E02093334F03F066B9F /* Pods */,
+				9404FADD165C2E44EC859319 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +160,29 @@
 			path = CYOAUITests;
 			sourceTree = "<group>";
 		};
+		9404FADD165C2E44EC859319 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE197563FEE974D6ACF016B6 /* Pods_CYOA.framework */,
+				CAB639D174B33B3E49EBECCB /* Pods_CYOA_CYOAUITests.framework */,
+				A7240FE9E67AEAC6AAAC3372 /* Pods_CYOATests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E0114E02093334F03F066B9F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE180CD9A7D5B15111745ADD /* Pods-CYOA.debug.xcconfig */,
+				2BD0DEED71F7851C833643EC /* Pods-CYOA.release.xcconfig */,
+				0B6E88379644A4889C9392A1 /* Pods-CYOA-CYOAUITests.debug.xcconfig */,
+				5CD5283B3514BF8BF8053568 /* Pods-CYOA-CYOAUITests.release.xcconfig */,
+				5AD81810B3700D8524A71B81 /* Pods-CYOATests.debug.xcconfig */,
+				4D66ECF3C67C6C0B0E62DEFC /* Pods-CYOATests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,9 +190,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C1680A523DC641600500538 /* Build configuration list for PBXNativeTarget "CYOA" */;
 			buildPhases = (
+				13835941BB1A77B73A20F930 /* [CP] Check Pods Manifest.lock */,
 				0C16807723DC641300500538 /* Sources */,
 				0C16807823DC641300500538 /* Frameworks */,
 				0C16807923DC641300500538 /* Resources */,
+				1EA5B89EB0921EA3799EE26C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -167,6 +209,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C1680A823DC641600500538 /* Build configuration list for PBXNativeTarget "CYOATests" */;
 			buildPhases = (
+				40B2641F52941C5D6935448C /* [CP] Check Pods Manifest.lock */,
 				0C16808D23DC641600500538 /* Sources */,
 				0C16808E23DC641600500538 /* Frameworks */,
 				0C16808F23DC641600500538 /* Resources */,
@@ -185,9 +228,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C1680AB23DC641600500538 /* Build configuration list for PBXNativeTarget "CYOAUITests" */;
 			buildPhases = (
+				4CD3146C2264240B0BD6F1D9 /* [CP] Check Pods Manifest.lock */,
 				0C16809823DC641600500538 /* Sources */,
 				0C16809923DC641600500538 /* Frameworks */,
 				0C16809A23DC641600500538 /* Resources */,
+				D37C61C8FFD8C99FDB8F8CA3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -268,6 +313,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		13835941BB1A77B73A20F930 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CYOA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1EA5B89EB0921EA3799EE26C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CYOA/Pods-CYOA-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CYOA/Pods-CYOA-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CYOA/Pods-CYOA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40B2641F52941C5D6935448C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CYOATests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4CD3146C2264240B0BD6F1D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CYOA-CYOAUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D37C61C8FFD8C99FDB8F8CA3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CYOA-CYOAUITests/Pods-CYOA-CYOAUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CYOA-CYOAUITests/Pods-CYOA-CYOAUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CYOA-CYOAUITests/Pods-CYOA-CYOAUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0C16807723DC641300500538 /* Sources */ = {
@@ -452,6 +600,7 @@
 		};
 		0C1680A623DC641600500538 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE180CD9A7D5B15111745ADD /* Pods-CYOA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -460,7 +609,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hej.com.CYOA;
+				PRODUCT_BUNDLE_IDENTIFIER = "mds.com-CYOA";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -469,6 +618,7 @@
 		};
 		0C1680A723DC641600500538 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BD0DEED71F7851C833643EC /* Pods-CYOA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -477,7 +627,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hej.com.CYOA;
+				PRODUCT_BUNDLE_IDENTIFIER = "mds.com-CYOA";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -486,6 +636,7 @@
 		};
 		0C1680A923DC641600500538 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AD81810B3700D8524A71B81 /* Pods-CYOATests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -507,6 +658,7 @@
 		};
 		0C1680AA23DC641600500538 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D66ECF3C67C6C0B0E62DEFC /* Pods-CYOATests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -528,6 +680,7 @@
 		};
 		0C1680AC23DC641600500538 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B6E88379644A4889C9392A1 /* Pods-CYOA-CYOAUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -547,6 +700,7 @@
 		};
 		0C1680AD23DC641600500538 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CD5283B3514BF8BF8053568 /* Pods-CYOA-CYOAUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

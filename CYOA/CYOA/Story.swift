@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import Firebase
 
 class Story {
     var player : Player?
     var path = [Chapter]()
     var currentChapter : Chapter
+    let db = Firestore.firestore()
     
     init(playerName: String){
         player = Player(name: playerName)
@@ -36,5 +38,13 @@ class Story {
         player?.madeChoice(choice: choice.outcome)
         player?.updateAttribute(attributeToUpdate: choice.changedAttribute ?? "", value: choice.changeAttributeValue ?? 0)
     }
+    
+//    func getText() {
+//        let textRef = db.collection("chapters")
+//        textRef.document("chapterID").getDocument(){ (document , error) in
+//            if let document = document, document.exists {
+//                print(document.data() ?? "")
+//            }
+//        }
+//    }
 }
-
