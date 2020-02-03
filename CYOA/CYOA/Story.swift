@@ -19,6 +19,7 @@ class Story {
     init(playerName: String){
         player = Player(name: playerName)
         let chapter = Chapter(number: 1, text: "Let's get this first chapter started shall we!")
+        let chapter2 = Chapter(number: 2, text: "This will be the second chapter where we test our labels abillity to add extra text. Just really make sure that we have a flexible label to work with!")
         let yes = Option(name: "Yes", outcome: "SaidYes", attribute: "Heroic", attributeValue: 1)
         let no = Option(name: "No", outcome: "SaidNo", attribute: "Heroic", attributeValue: -1)
         let what = Option(name: "What is this?", outcome: "confused")
@@ -31,6 +32,7 @@ class Story {
         chapter.chapterOptions.append(what2)
                 chapter.chapterOptions.append(what3)
         path.append(chapter)
+        path.append(chapter2)
         
         currentChapter = chapter
     }

@@ -17,6 +17,9 @@
 		0C1680A123DC641600500538 /* CYOAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680A023DC641600500538 /* CYOAUITests.swift */; };
 		0C1680B323DC6D8400500538 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1680B223DC6D8400500538 /* Chapter.swift */; };
 		0C3489FA23E72CD0007CC471 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C3489F923E72CD0007CC471 /* GoogleService-Info.plist */; };
+		0C3489FD23E8AE89007CC471 /* MyStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3489FB23E8AE89007CC471 /* MyStoryCell.swift */; };
+		0C3489FE23E8AE89007CC471 /* MyStoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3489FC23E8AE89007CC471 /* MyStoryCell.xib */; };
+		0C348A0023E8B266007CC471 /* MyStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3489FF23E8B266007CC471 /* MyStoryViewController.swift */; };
 		0CAD447E23E1E4FC0062CD7F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD447D23E1E4FC0062CD7F /* Player.swift */; };
 		0CAD448023E1FD5A0062CD7F /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD447F23E1FD5A0062CD7F /* Story.swift */; };
 		0CAD44C623E356D40062CD7F /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD44C523E356D40062CD7F /* Attribute.swift */; };
@@ -61,6 +64,9 @@
 		0C1680A223DC641600500538 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C1680B223DC6D8400500538 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		0C3489F923E72CD0007CC471 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0C3489FB23E8AE89007CC471 /* MyStoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryCell.swift; sourceTree = "<group>"; };
+		0C3489FC23E8AE89007CC471 /* MyStoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyStoryCell.xib; sourceTree = "<group>"; };
+		0C3489FF23E8B266007CC471 /* MyStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryViewController.swift; sourceTree = "<group>"; };
 		0CAD447D23E1E4FC0062CD7F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		0CAD447F23E1FD5A0062CD7F /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		0CAD44C523E356D40062CD7F /* Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
@@ -130,6 +136,7 @@
 			children = (
 				0C16807E23DC641300500538 /* AppDelegate.swift */,
 				0C16808023DC641300500538 /* SceneDelegate.swift */,
+				0C3489FF23E8B266007CC471 /* MyStoryViewController.swift */,
 				0C16808223DC641300500538 /* ViewController.swift */,
 				0C16808423DC641300500538 /* Main.storyboard */,
 				0C16808723DC641600500538 /* Assets.xcassets */,
@@ -141,6 +148,8 @@
 				0CAD44C723E35D5F0062CD7F /* Option.swift */,
 				0C3489F923E72CD0007CC471 /* GoogleService-Info.plist */,
 				0C16808C23DC641600500538 /* Info.plist */,
+				0C3489FB23E8AE89007CC471 /* MyStoryCell.swift */,
+				0C3489FC23E8AE89007CC471 /* MyStoryCell.xib */,
 			);
 			path = CYOA;
 			sourceTree = "<group>";
@@ -295,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C3489FE23E8AE89007CC471 /* MyStoryCell.xib in Resources */,
 				0C16808B23DC641600500538 /* LaunchScreen.storyboard in Resources */,
 				0C3489FA23E72CD0007CC471 /* GoogleService-Info.plist in Resources */,
 				0C16808823DC641600500538 /* Assets.xcassets in Resources */,
@@ -428,9 +438,11 @@
 			files = (
 				0CAD44C823E35D5F0062CD7F /* Option.swift in Sources */,
 				0C16808323DC641300500538 /* ViewController.swift in Sources */,
+				0C3489FD23E8AE89007CC471 /* MyStoryCell.swift in Sources */,
 				0C1680B323DC6D8400500538 /* Chapter.swift in Sources */,
 				0C16807F23DC641300500538 /* AppDelegate.swift in Sources */,
 				0CAD447E23E1E4FC0062CD7F /* Player.swift in Sources */,
+				0C348A0023E8B266007CC471 /* MyStoryViewController.swift in Sources */,
 				0CAD44C623E356D40062CD7F /* Attribute.swift in Sources */,
 				0C16808123DC641300500538 /* SceneDelegate.swift in Sources */,
 				0CAD448023E1FD5A0062CD7F /* Story.swift in Sources */,
