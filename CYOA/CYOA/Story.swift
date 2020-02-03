@@ -14,6 +14,7 @@ class Story {
     var path = [Chapter]()
     var currentChapter : Chapter
     let db = Firestore.firestore()
+    typealias FinishedDownload = () -> ()
     
     init(playerName: String){
         player = Player(name: playerName)
@@ -40,14 +41,17 @@ class Story {
     }
     
     
-//    func getText() {
-//        let textRef = db.collection("chapters")
-//        textRef.document("chapterID").getDocument(){ (document , error) in
-//            if let document = document, document.exists {
-//                if let text: String = document.data() as? String {
-//                    self.currentChapter.chapterText = text
-//                }
-//            }
-//        }
-//    }
+    func getText(completion: (_ success: Bool) -> Void){
+        print(self.currentChapter.chapterText ?? "")
+        let textRef = db.collection("chapters")
+        textRef.document("chapterID").getDocument(){ (document , error) in
+            if let document = document, document.exists {
+                if let text = document["text"] as? String{
+                    self.currentChapter.chapterText = text
+                    print(self.currentChapter.chapterText ?? "")
+                }
+            }
+        }
+    completion(true)
+    }
 }

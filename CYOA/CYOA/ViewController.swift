@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var currentOption : Option?
     let optionID = "optionsCellID"
     
+    
     @IBOutlet weak var storyText: UITextView!
     
     @IBOutlet weak var chapterLabel: UILabel!
@@ -25,8 +26,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         guard let choice = currentOption else {return}
         myStory.pathChosen(choice: choice)
         print(myStory.player?.checkAttribute(attributeToCheck: choice.changedAttribute ?? "") ?? 0)
-            myStory.getText()
-    }
+        
+        myStory.getText{ (success) -> Void in
+        if success {
+           updateStoryText()
+        }}
+}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +39,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         optionsTableView.delegate = self
         // Do any additional setup after loading the view.
         
-        guard let currentStoryText = myStory.currentChapter.chapterText else {return}
-        storyText.text = currentStoryText
+        updateStoryText()
     }
     
     
@@ -57,6 +61,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         currentOption = option
         guard let chosenOption = currentOption else {return}
         print(chosenOption.name)
+    }
+    
+    func updateStoryText() {
+        print("Startade")
+        guard let currentStoryText = myStory.currentChapter.chapterText else {return}
+        storyText.text = currentStoryText
     }
     
 }
