@@ -13,7 +13,7 @@ class Option : Codable {
     public var name : String
     public var outcome : String
     public var changedAttribute : String?
-    public var changeAttributeValue : Int?
+    public var changedAttributeValue : Int?
     
     
     init (name: String, outcome: String) {
@@ -25,6 +25,6 @@ class Option : Codable {
         self.name = name
         self.outcome = outcome
         self.changedAttribute = attribute
-        self.changeAttributeValue = attributeValue
+        self.changedAttributeValue = attributeValue
     }
 }

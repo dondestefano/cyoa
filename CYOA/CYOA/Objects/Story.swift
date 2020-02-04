@@ -13,47 +13,97 @@ import FirebaseFirestoreSwift
 class Story {
     var player : Player?
     var path = [Chapter]()
+    var newOptions = [Option]()
+    var availableOptions = [Option]()
     var currentChapter : Chapter
+    var db : Firestore!
     
     init(playerName: String){
         player = Player(name: playerName)
-        let chapter = Chapter(number: 1, text: "Let's get this first chapter started shall we!")
-        let chapter2 = Chapter(number: 2, text: "This will be the second chapter where we test our labels abillity to add extra text. Just really make sure that we have a flexible label to work with!")
-        let yes = Option(name: "Yes", outcome: "SaidYes", attribute: "Heroic", attributeValue: 1)
-        let no = Option(name: "No", outcome: "SaidNo", attribute: "Heroic", attributeValue: -1)
-        let what = Option(name: "What is this?", outcome: "confused")
-        let what2 = Option(name: "What is this? I am super not ok with what is currently happening and would like to see how my tableview handles a longer text", outcome: "confused")
-        let what3 = Option(name: "What is this?", outcome: "confused")
-
-        chapter.chapterOptions.append(yes)
-        chapter.chapterOptions.append(no)
-        chapter.chapterOptions.append(what)
-        chapter.chapterOptions.append(what2)
-                chapter.chapterOptions.append(what3)
-        path.append(chapter)
-        path.append(chapter2)
-        
-        currentChapter = chapter
+        currentChapter = Chapter(number: 0, text: "")
     }
     
     func pathChosen(choice: Option) {
         player?.madeChoice(choice: choice.outcome)
-        player?.updateAttribute(attributeToUpdate: choice.changedAttribute ?? "", value: choice.changeAttributeValue ?? 0)
+        let attributeValue = choice.changedAttributeValue
+        player?.updateAttribute(attributeToUpdate: choice.changedAttribute ?? "", value: attributeValue ?? 0)
+        makePath()
     }
     
     
-    func getText(completion: (_ success: Bool) -> Void){
+    func makePath(){
+        let currentHeroicStat = self.player?.checkAttribute(attributeToCheck: "Heroic")
+        let group = DispatchGroup()
+         group.enter()
+
+         DispatchQueue.main.async {
+            self.availableOptions.removeAll()
+              if currentHeroicStat == 0 {
+                self.nextChapter(chapterID: "ch1", firstOptionID: "op1", secondOptionID: "op11", thirdOptionID: "op1")
+             }
+             else if currentHeroicStat == 1 {
+                self.nextChapter(chapterID: "ch2+1", firstOptionID: "op1", secondOptionID: nil, thirdOptionID: nil)
+             }
+             else if currentHeroicStat == -1 {
+                self.nextChapter(chapterID: "ch2-1", firstOptionID: "op11", secondOptionID: nil, thirdOptionID: nil)
+             }
+             group.leave()
+         }
+        self.path.append(currentChapter)
+    }
+    
+    func nextChapter(chapterID: String, firstOptionID: String, secondOptionID: String?, thirdOptionID: String?) {
+            self.readChapterFromDB(chapterID: chapterID)
+            self.readOptionsFromDB(optionID: firstOptionID)
+        
+            guard let secondOption = secondOptionID else {return}
+            self.readOptionsFromDB(optionID: secondOption)
+        
+            guard let thirdOption = thirdOptionID else {return}
+            self.readOptionsFromDB(optionID: thirdOption)
+    }
+    
+    func readChapterFromDB(chapterID : String) {
         let db = Firestore.firestore()
-        print(self.currentChapter.chapterText ?? "")
         let textRef = db.collection("chapters")
-        textRef.document("chapterID").getDocument(){ (document , error) in
+        textRef.document(chapterID).getDocument(){ (document , error) in
             if let document = document, document.exists {
-                if let text = document["text"] as? String{
-                    self.currentChapter.chapterText = text
-                    print(self.currentChapter.chapterText ?? "")
+                let result = Result {
+                    try document.data(as: Chapter.self)
+                }
+                    
+                switch result {
+                    case.success(let chapter):
+                        if let chapter = chapter {
+                            self.currentChapter = chapter
+                        }
+                    case.failure(let error):
+                        print("Error decoding: \(error)")
                 }
             }
         }
-    completion(true)
+    }
+    
+    func readOptionsFromDB(optionID : String){
+        let db = Firestore.firestore()
+        let textRef = db.collection("Options")
+        textRef.document(optionID).getDocument(){ (document , error) in
+            if let document = document, document.exists {
+                let result = Result {
+                    try document.data(as: Option.self)
+                }
+                    
+                switch result {
+                    case.success(let option):
+                        if let option = option {
+                            self.availableOptions.append(option)
+                        }
+                    case.failure(let error):
+                        print("Error decoding: \(error)")
+                }
+            }
+        }
     }
 }
+
+

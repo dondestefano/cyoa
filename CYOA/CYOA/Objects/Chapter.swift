@@ -12,11 +12,9 @@ class Chapter : Codable {
     
     var chapterNumber: Int?
     var chapterText : String?
-    var chapterOptions = [Option]()
     
-    init (number: Int, text: String, chapterOption: [Option]) {
+    init (number: Int, text: String) {
         self.chapterNumber = number
         self.chapterText = text
-        self.chapterOptions = chapterOption
     }
 }
