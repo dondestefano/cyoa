@@ -6,7 +6,9 @@ target 'CYOA' do
   use_frameworks!
 
   # Pods for CYOA
-pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 
   target 'CYOATests' do
     inherit! :search_paths

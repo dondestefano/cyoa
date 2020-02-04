@@ -134,18 +134,13 @@
 		0C16807D23DC641300500538 /* CYOA */ = {
 			isa = PBXGroup;
 			children = (
+				0C348A0223E95CBA007CC471 /* Objects */,
+				0C348A0123E95C08007CC471 /* ViewControllers */,
 				0C16807E23DC641300500538 /* AppDelegate.swift */,
 				0C16808023DC641300500538 /* SceneDelegate.swift */,
-				0C3489FF23E8B266007CC471 /* MyStoryViewController.swift */,
-				0C16808223DC641300500538 /* ViewController.swift */,
 				0C16808423DC641300500538 /* Main.storyboard */,
 				0C16808723DC641600500538 /* Assets.xcassets */,
 				0C16808923DC641600500538 /* LaunchScreen.storyboard */,
-				0C1680B223DC6D8400500538 /* Chapter.swift */,
-				0CAD447D23E1E4FC0062CD7F /* Player.swift */,
-				0CAD447F23E1FD5A0062CD7F /* Story.swift */,
-				0CAD44C523E356D40062CD7F /* Attribute.swift */,
-				0CAD44C723E35D5F0062CD7F /* Option.swift */,
 				0C3489F923E72CD0007CC471 /* GoogleService-Info.plist */,
 				0C16808C23DC641600500538 /* Info.plist */,
 				0C3489FB23E8AE89007CC471 /* MyStoryCell.swift */,
@@ -170,6 +165,27 @@
 				0C1680A223DC641600500538 /* Info.plist */,
 			);
 			path = CYOAUITests;
+			sourceTree = "<group>";
+		};
+		0C348A0123E95C08007CC471 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0C3489FF23E8B266007CC471 /* MyStoryViewController.swift */,
+				0C16808223DC641300500538 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0C348A0223E95CBA007CC471 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				0C1680B223DC6D8400500538 /* Chapter.swift */,
+				0CAD447D23E1E4FC0062CD7F /* Player.swift */,
+				0CAD447F23E1FD5A0062CD7F /* Story.swift */,
+				0CAD44C523E356D40062CD7F /* Attribute.swift */,
+				0CAD44C723E35D5F0062CD7F /* Option.swift */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 		9404FADD165C2E44EC859319 /* Frameworks */ = {

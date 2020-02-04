@@ -30,7 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sxb-90-m40">
-                                <rect key="frame" x="20" y="590" width="374" height="187"/>
+                                <rect key="frame" x="20" y="589.66666666666663" width="374" height="187"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Sxb-90-m40" secondAttribute="height" multiplier="2:1" id="RSv-wU-awe"/>
@@ -65,9 +65,8 @@
                                     <action selector="makeChoice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HoR-fP-p92"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkY-01-JK5">
-                                <rect key="frame" x="331" y="37" width="63" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkY-01-JK5">
+                                <rect key="frame" x="348" y="37" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="uWy-Gx-TMv" kind="show" id="w34-Qb-686"/>
@@ -78,8 +77,10 @@
                         <constraints>
                             <constraint firstItem="4qh-1c-fpy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="0sJ-9j-mIb"/>
                             <constraint firstItem="hO9-hb-JAk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="2ko-r5-HdC"/>
+                            <constraint firstItem="4qh-1c-fpy" firstAttribute="top" secondItem="ZkY-01-JK5" secondAttribute="bottom" constant="61" id="8B5-XH-2L0"/>
                             <constraint firstItem="Sxb-90-m40" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8LW-wz-Gxt"/>
                             <constraint firstItem="Sxb-90-m40" firstAttribute="top" secondItem="4qh-1c-fpy" secondAttribute="bottom" constant="31" id="8kl-BN-o7D"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZkY-01-JK5" secondAttribute="trailing" constant="20" id="Amx-Hp-bw2"/>
                             <constraint firstItem="4qh-1c-fpy" firstAttribute="top" secondItem="hO9-hb-JAk" secondAttribute="bottom" constant="17" id="B5p-iS-JwU"/>
                             <constraint firstItem="VsY-Zq-TJk" firstAttribute="top" secondItem="Sxb-90-m40" secondAttribute="bottom" constant="22" id="Itr-ym-dZB"/>
                             <constraint firstItem="hO9-hb-JAk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="QLB-9K-hSF"/>
@@ -90,6 +91,7 @@
                             <constraint firstItem="Sxb-90-m40" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="hcb-92-ybN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VsY-Zq-TJk" secondAttribute="bottom" constant="29" id="rgt-jv-L4A"/>
                             <constraint firstItem="4qh-1c-fpy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wch-Qn-dCu"/>
+                            <constraint firstItem="ZkY-01-JK5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="37" id="wo0-8s-Xq2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
