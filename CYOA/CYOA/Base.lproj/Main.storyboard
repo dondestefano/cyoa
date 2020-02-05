@@ -68,7 +68,7 @@
                                 <rect key="frame" x="348" y="37" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="uWy-Gx-TMv" kind="show" id="w34-Qb-686"/>
+                                    <segue destination="uWy-Gx-TMv" kind="show" identifier="segueToMyStory" id="w34-Qb-686"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hy2-Af-0Z2">

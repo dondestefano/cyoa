@@ -10,7 +10,7 @@ import UIKit
 
 class MyStoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var myStory = Story(playerName: "Michael")
+    var myStory = Story()
     let storyCellID = "myStoryCellID"
     
     @IBOutlet weak var myStoryTableView: UITableView!
@@ -43,7 +43,7 @@ class MyStoryViewController: UIViewController, UITableViewDataSource, UITableVie
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        myStoryTableView.reloadData()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        myStoryTableView.reloadData()
+//    }
 }

@@ -30,6 +30,7 @@ class Player {
         self.choices.append(choice)
     }
     
+    //See what vital choices the player has made
     func checkForChoice(checkingForChoice: String) -> Bool{
         for choice in choices {
             if checkingForChoice == choice {
@@ -39,6 +40,7 @@ class Player {
     return false
     }
     
+    // Attribute getters and setters //
     func updateAttribute(attributeToUpdate: String, value: Int){
         for attribute in attributes{
             if attributeToUpdate == attribute.name {

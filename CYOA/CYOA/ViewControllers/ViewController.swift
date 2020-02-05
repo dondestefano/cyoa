@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var myStory = Story(playerName: "Michael")
     var currentOption : Option?
     let optionID = "optionsCellID"
+    let myStorySegueID = "segueToMyStory"
     
     
     @IBOutlet weak var storyText: UITextView!
@@ -25,12 +26,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     override func viewDidLoad() {
+        self.myStory.makePath() { self.refresh()  }
         super.viewDidLoad()
         optionsTableView.dataSource = self
         optionsTableView.delegate = self
         // Do any additional setup after loading the view
-        self.myStory.makePath()
-        self.refresh()
 
     }
 
@@ -53,6 +53,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         print(chosenOption.name)
     }
     
+    // Update functions //
     func updateStoryText() {
         print("Startade")
         guard let currentStoryText = myStory.currentChapter.chapterText else {return}
@@ -67,14 +68,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         updateStoryText()
         updateChapterLabel()
         optionsTableView.reloadData()
+        hideStoryText()
     }
     
+    // Actions //
     @IBAction func makeChoice(_ sender: UIButton) {
         guard let choice = currentOption else {return}
-        myStory.pathChosen(choice: choice)
+        myStory.pathChosen(choice: choice) {self.refresh()}
         print(myStory.player?.checkAttribute(attributeToCheck: choice.changedAttribute ?? "") ?? 99)
+    }
     
-        updateStoryText()
-        optionsTableView.reloadData()
+    
+    // Animations //
+    func hideStoryText(){
+        UIView.animate(withDuration: 1.0, animations: {self.storyText.alpha = 0.0}, completion: showStoryText(finished:))
+    }
+    
+    func showStoryText(finished: Bool){
+        UIView.animate(withDuration: 1.5, animations: {self.storyText.alpha = 1.0})
+    }
+    
+    // Segues //
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == myStorySegueID {
+            let destinationVC = segue.destination as! MyStoryViewController
+            destinationVC.myStory = myStory
+        }
     }
 }

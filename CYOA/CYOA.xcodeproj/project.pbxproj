@@ -170,8 +170,8 @@
 		0C348A0123E95C08007CC471 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0C3489FF23E8B266007CC471 /* MyStoryViewController.swift */,
 				0C16808223DC641300500538 /* ViewController.swift */,
+				0C3489FF23E8B266007CC471 /* MyStoryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
