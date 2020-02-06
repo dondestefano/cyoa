@@ -23,7 +23,7 @@ class MyStoryViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: storyCellID, for: indexPath) as! MyStoryCell
         
         cell.chapterTextLabel.text = "Chapter \(myStory.path[indexPath.row].chapterNumber ?? 0)"
-        cell.storyTextLabel.text = myStory.path[indexPath.row].chapterText
+        cell.storyTextLabel.text = myStory.path[indexPath.row].chapterText?.replacingOccurrences(of: "_b", with: "\n")
         
         return cell
         

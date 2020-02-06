@@ -49,15 +49,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let option = myStory.availableOptions[indexPath.row]
         currentOption = option
-        guard let chosenOption = currentOption else {return}
-        print(chosenOption.name)
     }
     
     // Update functions //
     func updateStoryText() {
-        print("Startade")
         guard let currentStoryText = myStory.currentChapter.chapterText else {return}
-        storyText.text = "\(currentOption?.outcome ?? "") \n\n\(currentStoryText)"
+        storyText.text = currentStoryText.replacingOccurrences(of: "_b", with: "\n")
     }
     
     func updateChapterLabel() {
@@ -75,7 +72,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func makeChoice(_ sender: UIButton) {
         guard let choice = currentOption else {return}
         myStory.pathChosen(choice: choice) {self.refresh()}
-        print(myStory.player?.checkAttribute(attributeToCheck: choice.changedAttribute ?? "") ?? 99)
     }
     
     

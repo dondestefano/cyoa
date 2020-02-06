@@ -15,6 +15,7 @@ class Story {
     var path = [Chapter]()
     var availableOptions = [Option]()
     var currentChapter : Chapter
+    var currentOption : Option?
     var db : Firestore!
     
     init(){
@@ -28,6 +29,7 @@ class Story {
     
     // Progression functions //
     func pathChosen(choice: Option, completion: @escaping () -> ()) {
+        currentOption = choice
         player?.madeChoice(choice: choice.outcome)
         let attributeValue = choice.changedAttributeValue
         player?.updateAttribute(attributeToUpdate: choice.changedAttribute ?? "", value: attributeValue ?? 0)
@@ -76,8 +78,9 @@ class Story {
                     case.success(let chapter):
                         if let chapter = chapter {
                             self.currentChapter = chapter
-                            self.path.append(self.currentChapter)
+                            self.currentChapter.chapterText = "\(self.currentOption?.outcome ?? "")\(self.currentChapter.chapterText ?? "Failed to load text.") "
                             completion()
+                            self.path.append(self.currentChapter)
                         }
                     case.failure(let error):
                         print("Error decoding: \(error)")
