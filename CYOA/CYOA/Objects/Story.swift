@@ -42,26 +42,19 @@ class Story {
 
             self.availableOptions.removeAll()
               if currentHeroicStat == 0 {
-                self.nextChapter(chapterID: "ch1", firstOptionID: "op1", secondOptionID: "op11", thirdOptionID: nil, completion: completion)
+                self.nextChapter(chapterID: "ch1", completion: completion)
              }
              else if currentHeroicStat == 1 {
-                self.nextChapter(chapterID: "ch2+1", firstOptionID: "op1", secondOptionID: nil, thirdOptionID: nil, completion: completion)
+                self.nextChapter(chapterID: "ch2+1", completion: completion)
              }
              else if currentHeroicStat == -1 {
-                self.nextChapter(chapterID: "ch2-1", firstOptionID: "op11", secondOptionID: nil, thirdOptionID: nil, completion: completion)
+                self.nextChapter(chapterID: "ch2-1", completion: completion)
              }
     }
     
     //Retrieve a chapter and options from Firebase
-    func nextChapter(chapterID: String, firstOptionID: String, secondOptionID: String?, thirdOptionID: String?, completion: @escaping () -> ()) {
+    func nextChapter(chapterID: String, completion: @escaping () -> ()) {
             self.readChapterFromDB(chapterID: chapterID, completion: completion)
-            self.readOptionsFromDB(optionID: firstOptionID, completion: completion)
-        
-            guard let secondOption = secondOptionID else {return}
-            self.readOptionsFromDB(optionID: secondOption, completion: completion)
-        
-            guard let thirdOption = thirdOptionID else {return}
-            self.readOptionsFromDB(optionID: thirdOption, completion: completion)
     }
     
     // Database readers //
@@ -81,6 +74,7 @@ class Story {
                             self.currentChapter.chapterText = "\(self.currentOption?.outcome ?? "")\(self.currentChapter.chapterText ?? "Failed to load text.") "
                             completion()
                             self.path.append(self.currentChapter)
+                            self.readOptionsFromDB (completion: completion)
                         }
                     case.failure(let error):
                         print("Error decoding: \(error)")
@@ -89,28 +83,43 @@ class Story {
         }
     }
     
-    
-    func readOptionsFromDB(optionID : String, completion: @escaping () -> () ){
+    func readOptionsFromDB(completion: @escaping () -> () ){
         let db = Firestore.firestore()
-        let textRef = db.collection("Options")
-        textRef.document(optionID).getDocument(){ (document , error) in
-            if let document = document, document.exists {
-                let result = Result {
-                    try document.data(as: Option.self)
-                }
-                    
-                switch result {
-                    case.success(let option):
-                        if let option = option {
-                            self.availableOptions.append(option)
-                            completion()
+        let ref = db.collection("Options")
+        //Get chapters that are compatible with the current chapter or has the value 0 (always compatible)
+        ref.whereField("compatibleChapter", in: [currentChapter.chapterNumber ?? 99, 0])
+            .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let result = Result {
+                            try document.data(as: Option.self)
                         }
-                    case.failure(let error):
-                        print("Error decoding: \(error)")
+                        switch result {
+                        case.success(let option):
+                            if let option = option {
+                                guard let requiredAttribute = option.requiredAttribute else {return}
+                                guard let currentAttributeValue = self.player?.checkAttribute(attributeToCheck: requiredAttribute) else {return}
+                                
+                                //Check if the player has the required attribute value
+                                if option.requiredAttributeValue ?? 99 <= currentAttributeValue {
+                                    //Check if the player has allready made this choice
+                                    if self.player?.checkForChoice(checkingForChoice: option.outcome) == false {
+                                            //If the player has the required value and hasnn't amde this
+                                            //choice before. Add the option to the scenario
+                                            self.availableOptions.append(option)
+                                            completion()
+                                        
+                                    }
+                                }
+                        }
+                        
+                        case.failure(let err):
+                            print("Error decoding: \(err)")
+                        }
+                    }
                 }
-            }
         }
     }
 }
-
-

@@ -20,10 +20,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var storyText: UITextView!
     @IBOutlet weak var chapterLabel: UILabel!
     @IBOutlet weak var optionsTableView: UITableView!
-    
-    @IBAction func update(_ sender: Any) {
-        refresh()
-    }
+
     
     override func viewDidLoad() {
         self.myStory.makePath() { self.refresh()  }

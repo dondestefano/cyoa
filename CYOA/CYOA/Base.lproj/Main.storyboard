@@ -71,14 +71,6 @@
                                     <segue destination="uWy-Gx-TMv" kind="show" identifier="segueToMyStory" id="w34-Qb-686"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hy2-Af-0Z2">
-                                <rect key="frame" x="348" y="75" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="update:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0fY-yF-Vmm"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -86,6 +78,7 @@
                             <constraint firstItem="hO9-hb-JAk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="37" id="2ko-r5-HdC"/>
                             <constraint firstItem="4qh-1c-fpy" firstAttribute="top" secondItem="ZkY-01-JK5" secondAttribute="bottom" constant="61" id="8B5-XH-2L0"/>
                             <constraint firstItem="Sxb-90-m40" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8LW-wz-Gxt"/>
+                            <constraint firstItem="ZkY-01-JK5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="348" id="8MT-7M-X3J"/>
                             <constraint firstItem="Sxb-90-m40" firstAttribute="top" secondItem="4qh-1c-fpy" secondAttribute="bottom" constant="31" id="8kl-BN-o7D"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZkY-01-JK5" secondAttribute="trailing" constant="20" id="Amx-Hp-bw2"/>
                             <constraint firstItem="4qh-1c-fpy" firstAttribute="top" secondItem="hO9-hb-JAk" secondAttribute="bottom" constant="17" id="B5p-iS-JwU"/>
