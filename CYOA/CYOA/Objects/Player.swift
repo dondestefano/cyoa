@@ -42,11 +42,8 @@ class Player {
     // Attribute getters and setters //
     func updateAttribute(attributeToUpdate: String, value: Int){
         for attribute in attributes{
-            print(attribute.name)
             if attributeToUpdate == attribute.name {
-                print(attribute.name)
                 attribute.updateValue(value: value)
-                print(attribute.value)
             }
         }
     }

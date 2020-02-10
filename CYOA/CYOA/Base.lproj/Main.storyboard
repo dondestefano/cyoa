@@ -98,6 +98,7 @@
                     <navigationItem key="navigationItem" id="GUp-te-gAb"/>
                     <connections>
                         <outlet property="chapterLabel" destination="hO9-hb-JAk" id="1jb-E2-7HN"/>
+                        <outlet property="choiceButton" destination="VsY-Zq-TJk" id="e9n-bj-Dbc"/>
                         <outlet property="optionsTableView" destination="Sxb-90-m40" id="LRk-6X-Gd0"/>
                         <outlet property="storyText" destination="4qh-1c-fpy" id="uDD-Qd-dbp"/>
                     </connections>
