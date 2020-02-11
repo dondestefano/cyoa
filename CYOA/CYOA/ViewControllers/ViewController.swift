@@ -11,7 +11,7 @@ import Firebase;
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
-    var myStory = Story(playerName: "Michael")
+    var myStory = Story()
     var currentOption : Option?
     let optionID = "optionsCellID"
     let myStorySegueID = "segueToMyStory"
@@ -23,7 +23,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var choiceButton: UIButton!
     
     override func viewDidLoad() {
-        self.myStory.nextChapter { self.refresh() }
+        
+        //Load chapter one if the current chapter is zero.
+        //Otherwise just refresh.
+        if myStory.currentChapter.chapterNumber == 0 {
+            self.myStory.nextChapter{ self.refresh() }
+        } else {refresh()}
+        
         super.viewDidLoad()
         optionsTableView.dataSource = self
         optionsTableView.delegate = self
@@ -31,6 +37,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     }
 
+//* TableView functions *//
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         myStory.availableOptions.count
     }
@@ -41,6 +48,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = option.name
         
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -50,7 +58,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         choiceButton.alpha = 1
     }
     
-    // Update functions //
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.alpha = 0
+        
+        UIView.animate(withDuration: 2, delay: 0.8 * Double(indexPath.row), animations: {cell.alpha = 1})
+    }
+    
+//* Update functions *//
     func updateStoryText() {
         guard let currentStoryText = myStory.currentChapter.chapterText else {return}
         storyText.text = currentStoryText
@@ -62,32 +76,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func refresh() {
         hideStoryText()
-        optionsTableView.reloadData()
         currentOption = nil
         choiceButton.isUserInteractionEnabled = false
         choiceButton.alpha = 0.4
     }
     
-    // Actions //
+//* Actions *//
     @IBAction func makeChoice(_ sender: UIButton) {
         guard let choice = currentOption else {return}
         myStory.pathChosen(choice: choice) {self.refresh()}
     }
     
     
-    // Animations //
+//* Animations *//
     func hideStoryText(){
-        UIView.animate(withDuration: 0.8, animations: {self.storyText.alpha = 0.0}, completion: revealNextChapter(finished:))
+        UIView.animate(withDuration: 0.5, animations: {self.storyText.alpha = 0.0}, completion: revealNextChapter(finished:))
     }
     
     func revealNextChapter(finished: Bool){
         updateChapterLabel()
         updateStoryText()
         UIView.animate(withDuration: 1.5, animations: {self.storyText.alpha = 1.0})
+        optionsTableView.reloadData()
     }
     
-    // Segues //
     
+//* Segues *//
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == myStorySegueID {
             let destinationVC = segue.destination as! MyStoryViewController

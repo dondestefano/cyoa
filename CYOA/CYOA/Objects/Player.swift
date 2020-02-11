@@ -39,7 +39,7 @@ class Player {
     return false
     }
     
-    // Attribute getters and setters //
+//* Attribute getters and setters *//
     func updateAttribute(attributeToUpdate: String, value: Int){
         for attribute in attributes{
             if attributeToUpdate == attribute.name {

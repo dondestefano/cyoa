@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chapter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evd-le-deq">
-                        <rect key="frame" x="16" y="5.5" width="288" height="24"/>
+                        <rect key="frame" x="15" y="5.5" width="289" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -30,11 +30,11 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="evd-le-deq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="3nb-oX-S0V"/>
                     <constraint firstAttribute="trailing" secondItem="CuL-WT-vlv" secondAttribute="trailing" constant="16" id="4ZC-jS-ffY"/>
                     <constraint firstItem="CuL-WT-vlv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="D6V-8f-cLX"/>
                     <constraint firstItem="evd-le-deq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5.5" id="ETP-Q6-kc5"/>
                     <constraint firstAttribute="bottom" secondItem="CuL-WT-vlv" secondAttribute="bottom" constant="28" id="Lsi-n9-xX6"/>
-                    <constraint firstItem="evd-le-deq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ZwR-Tf-GI2"/>
                     <constraint firstAttribute="trailing" secondItem="evd-le-deq" secondAttribute="trailing" constant="16" id="b2r-Jp-GdS"/>
                     <constraint firstItem="CuL-WT-vlv" firstAttribute="top" secondItem="evd-le-deq" secondAttribute="bottom" constant="8" id="lbC-H7-zag"/>
                     <constraint firstItem="CuL-WT-vlv" firstAttribute="top" secondItem="evd-le-deq" secondAttribute="bottom" constant="8" id="zzv-6h-AFF"/>

@@ -27,7 +27,13 @@ class Story {
         currentChapter = Chapter(number: 0, text: "")
     }
     
-    // Progression functions //
+    func formatText(){
+        var formatedText = self.currentChapter.chapterText?.replacingOccurrences(of: "_b", with: "\n")
+        formatedText = formatedText?.replacingOccurrences(of: ":player:", with: "\(self.player?.name ?? "Unknown")")
+        self.currentChapter.chapterText = formatedText
+    }
+    
+//* Progression functions *//
     func pathChosen(choice: Option, completion: @escaping () -> ()) {
         currentOption = choice
         //If the option came with a vital choice append it.
@@ -41,12 +47,11 @@ class Story {
         nextChapter(completion: completion)
     }
     
-    //Check the current chapter and choose the next one in order
     func nextChapter(completion: @escaping () -> ()){
         self.readChapterFromDB(chapterNumber: currentChapter.chapterNumber, completion: completion)
     }
     
-    // Database readers //
+//* Database readers *//
     func readChapterFromDB(chapterNumber : Int, completion: @escaping () -> () ){
         let db = Firestore.firestore()
         let chapterRef = db.collection("chapters")
@@ -63,10 +68,10 @@ class Story {
                         switch result {
                             case.success(let chapter):
                                 if let chapter = chapter {
-                                    //Check if the chapter is available
+                                    //Check if the chapter is available.
                                     if self.checkAvailableChapter(chapter: chapter){
-                                        //If there are more than one compaitible chapters
-                                        //determine which chapter to choose
+                                        //If there are more than one compatible chapters
+                                        //determine which chapter to choose.
                                         if self.currentChapter.requiredChoice != nil && self.currentChapter.chapterNumber != chapterNumber {
                                             break
                                         }
@@ -80,6 +85,7 @@ class Story {
                 self.currentChapter.chapterText = "\(self.currentOption?.outcome ?? "")\(self.currentChapter.chapterText ?? "Failed to load text.")"
                 self.formatText()
                 self.path.append(self.currentChapter)
+                //When the chapter is set - Remove previous options and get new ones.
                 self.availableOptions.removeAll()
                 self.readOptionsFromDB (completion: completion)
             }
@@ -89,7 +95,7 @@ class Story {
     func readOptionsFromDB(completion: @escaping () -> () ){
         let db = Firestore.firestore()
         let optionsRef = db.collection("Options")
-        //Get options that are compatible with the current chapter or has the value 0 (always compatible)
+        //Get options that are compatible with the current chapter or has the value 0 (always compatible).
         optionsRef.whereField("compatibleChapter", in: [currentChapter.chapterNumber, 0])
         .getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -106,7 +112,6 @@ class Story {
                                         self.availableOptions.append(option)
                                     }
                                 }
-                        
                             case.failure(let err):
                                 print("Error decoding option: \(err)")
                         }
@@ -116,16 +121,17 @@ class Story {
         }
     }
     
+//* Availability checks *//
     func checkAvailableChapter(chapter: Chapter) -> Bool {
         let chapter = chapter
-        //Check if the chapter has a required choice
+        //Check if the chapter has a required choice.
         if let requiredChoice = chapter.requiredChoice {
-            //Check if the player has made the required choice
+            //Check if the player has made the required choice.
             if self.player?.checkForChoice(checkingForChoice: requiredChoice) ?? false{
                 return true
             } else {return false}
         }
-        //If the chapter doesn't have a required choice return true
+        //If the chapter doesn't have a required choice return true.
         else {return true}
     }
     
@@ -143,12 +149,5 @@ class Story {
             }
         }
         return false
-    }
-    
-    func formatText(){
-        var formatedText = self.currentChapter.chapterText?.replacingOccurrences(of: "_b", with: "\n")
-        formatedText = formatedText?.replacingOccurrences(of: ":player:", with: "\(self.player?.name ?? "Unknown")")
-        self.currentChapter.chapterText = formatedText
-        
     }
 }
