@@ -44,7 +44,7 @@
                                 </state>
                                 <connections>
                                     <action selector="button:" destination="fmz-Ih-KrR" eventType="touchUpInside" id="pIG-2s-YEn"/>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="segueFromMainMenuToStory" animates="NO" modalPresentationStyle="fullScreen" id="y4a-lG-eeK"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="segueFromMainMenuToStory" modalPresentationStyle="fullScreen" id="rVy-mf-oSx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l7m-nc-YP4">
@@ -89,12 +89,63 @@
                         <outlet property="continueButton" destination="CtJ-gF-eEr" id="4mn-mA-wo5"/>
                         <outlet property="myStoryButton" destination="haJ-WS-fXU" id="7qf-lQ-yQX"/>
                         <outlet property="newStoryButton" destination="l7m-nc-YP4" id="Xul-PK-4hO"/>
+                        <segue destination="2vr-rI-48e" kind="presentation" identifier="newStorySegueID" modalPresentationStyle="fullScreen" id="qaV-zJ-5Gn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bcs-bA-a7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="fmz-Ih-KrR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-875.36231884057975" y="111.83035714285714"/>
+        </scene>
+        <!--New Story View Controller-->
+        <scene sceneID="bzz-Rb-e7R">
+            <objects>
+                <viewController id="2vr-rI-48e" customClass="NewStoryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hM9-jH-jo4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fo0-6M-p0L">
+                                <rect key="frame" x="26" y="111" width="363" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter your name" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1SJ-ff-ocD">
+                                <rect key="frame" x="105" y="326" width="214" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="playerNameTextField:" destination="2Qb-jp-9yV" eventType="editingDidEnd" id="aZT-3O-NvW"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3P-gA-7Z2">
+                                <rect key="frame" x="136" y="382" width="142" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Start your story">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="startNewStory:" destination="2vr-rI-48e" eventType="touchUpInside" id="wQI-pL-N2E"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="newStoryToStorySegueID" modalPresentationStyle="fullScreen" id="4YK-y3-8uE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Hnx-So-f08"/>
+                    </view>
+                    <connections>
+                        <outlet property="newStoryTextLabel" destination="Fo0-6M-p0L" id="vUG-Uf-vN2"/>
+                        <outlet property="playerNameTextField" destination="1SJ-ff-ocD" id="KKY-2d-aAD"/>
+                        <outlet property="startStoryButton" destination="v3P-gA-7Z2" id="7Wy-YS-MF6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vBX-0g-46B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="2Qb-jp-9yV" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-78" y="112"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -203,7 +254,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="a21-39-ZaN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-57.971014492753625" y="112.5"/>
+            <point key="canvasLocation" x="730" y="112"/>
         </scene>
         <!--My Story View Controller-->
         <scene sceneID="SB7-Rs-yef">
@@ -244,10 +295,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysj-do-eZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-875" y="842"/>
+            <point key="canvasLocation" x="-78" y="-674"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="w34-Qb-686"/>
+        <segue reference="T9L-A2-rPI"/>
+        <segue reference="rVy-mf-oSx"/>
     </inferredMetricsTieBreakers>
 </document>

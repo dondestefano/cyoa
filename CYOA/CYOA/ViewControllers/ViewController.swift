@@ -24,8 +24,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         
-        //Load chapter one if the current chapter is zero.
-        //Otherwise just refresh.
+        // Load chapter one if the current chapter is zero.
+        // Otherwise just refresh.
         if myStory.currentChapter.chapterNumber == 0 {
             self.myStory.nextChapter{ self.refresh() }
         } else {refresh()}

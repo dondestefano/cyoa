@@ -29,7 +29,7 @@ class Player {
         self.choices.append(choice)
     }
     
-    //See what vital choices the player has made
+    // See what vital choices the player has made
     func checkForChoice(checkingForChoice: String) -> Bool{
         for choice in choices {
             if checkingForChoice == choice {

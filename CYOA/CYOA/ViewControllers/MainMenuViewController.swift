@@ -11,10 +11,11 @@ import Firebase
 
 class MainMenuViewController: UIViewController {
     
-    var myStory = Story(playerName: "Michael")
+    var myStory = Story()
     let storySegueID = "segueFromMainMenuToStory"
     let myStorySegueID = "segueFromMainMenuToMyStory"
-
+    let newStorySegueID = "newStorySegueID"
+    
     @IBOutlet weak var continueButton: UIButton!
     
     @IBOutlet weak var newStoryButton: UIButton!
@@ -41,15 +42,14 @@ class MainMenuViewController: UIViewController {
     
     @IBAction func newStory(_ sender: Any) {
         if self.myStory.currentChapter.chapterNumber == 0 {
-            performSegue(withIdentifier: storySegueID, sender: (Any).self)
+            performSegue(withIdentifier: newStorySegueID, sender: (Any).self)
         } else {
             let warning = UIAlertController(title: "Warning!", message: "Starting a new story will erase your current story. \nAre you sure you want to continue?", preferredStyle: .alert)
             
             let newStory = UIAlertAction(title: "Delete my story", style: .default) {
                     action in
-                    
-                self.myStory = Story()
-                self.performSegue(withIdentifier: self.storySegueID, sender: Any?.self)
+                self.myStory = Story(playerName: "")
+                self.performSegue(withIdentifier: self.newStorySegueID, sender: Any?.self)
             }
                 
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -72,10 +72,15 @@ class MainMenuViewController: UIViewController {
             let destinationVC = segue.destination as! ViewController
             destinationVC.myStory = myStory
         }
+        
+        else if segue.identifier == newStorySegueID {
+            let destinationVC = segue.destination as! ViewController
+            destinationVC.myStory = myStory
+        }
     }
     
     @IBAction func unwindToRootViewController(segue: UIStoryboardSegue) {
-        print("Unwind to Root View Controller")
+
     }
 
 }
