@@ -89,7 +89,7 @@
                         <outlet property="continueButton" destination="CtJ-gF-eEr" id="4mn-mA-wo5"/>
                         <outlet property="myStoryButton" destination="haJ-WS-fXU" id="7qf-lQ-yQX"/>
                         <outlet property="newStoryButton" destination="l7m-nc-YP4" id="Xul-PK-4hO"/>
-                        <segue destination="2vr-rI-48e" kind="presentation" identifier="newStorySegueID" modalPresentationStyle="fullScreen" id="qaV-zJ-5Gn"/>
+                        <segue destination="2vr-rI-48e" kind="presentation" identifier="mainMenuToNewStorySegueID" modalPresentationStyle="fullScreen" id="r1y-bO-cL7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bcs-bA-a7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -100,13 +100,13 @@
         <!--New Story View Controller-->
         <scene sceneID="bzz-Rb-e7R">
             <objects>
-                <viewController id="2vr-rI-48e" customClass="NewStoryViewController" sceneMemberID="viewController">
+                <viewController id="2vr-rI-48e" customClass="NewStoryViewController" customModule="CYOA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hM9-jH-jo4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fo0-6M-p0L">
-                                <rect key="frame" x="26" y="111" width="363" height="21"/>
+                                <rect key="frame" x="26" y="111" width="363" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -118,7 +118,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="playerNameTextField:" destination="2Qb-jp-9yV" eventType="editingDidEnd" id="aZT-3O-NvW"/>
+                                    <action selector="playerNameTextFieldWasSelected:" destination="2vr-rI-48e" eventType="editingDidBegin" id="v37-z0-bxV"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3P-gA-7Z2">
@@ -129,7 +129,6 @@
                                 </state>
                                 <connections>
                                     <action selector="startNewStory:" destination="2vr-rI-48e" eventType="touchUpInside" id="wQI-pL-N2E"/>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="newStoryToStorySegueID" modalPresentationStyle="fullScreen" id="4YK-y3-8uE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -140,12 +139,14 @@
                         <outlet property="newStoryTextLabel" destination="Fo0-6M-p0L" id="vUG-Uf-vN2"/>
                         <outlet property="playerNameTextField" destination="1SJ-ff-ocD" id="KKY-2d-aAD"/>
                         <outlet property="startStoryButton" destination="v3P-gA-7Z2" id="7Wy-YS-MF6"/>
+                        <segue destination="2Qb-jp-9yV" kind="unwind" identifier="unwindToRootViewControllerID" unwindAction="unwindToRootViewControllerWithSegue:" id="5GT-1t-VQB"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="newStoryToStorySegueID" modalPresentationStyle="fullScreen" id="Ze7-87-VDG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vBX-0g-46B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="2Qb-jp-9yV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-78" y="112"/>
+            <point key="canvasLocation" x="-78.260869565217391" y="111.83035714285714"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -208,7 +209,7 @@
                                 <rect key="frame" x="348" y="37" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="uWy-Gx-TMv" kind="show" identifier="segueToMyStory" id="w34-Qb-686"/>
+                                    <segue destination="uWy-Gx-TMv" kind="presentation" identifier="segueToMyStory" id="w34-Qb-686"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZAr-Tz-KE7">

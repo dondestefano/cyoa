@@ -23,6 +23,7 @@ class Story {
     }
     
     init(playerName: String){
+        print(playerName)
         player = Player(name: playerName)
         currentChapter = Chapter(number: 0, text: "")
     }
@@ -96,7 +97,6 @@ class Story {
     }
     
     func readOptionsFromDB(completion: @escaping () -> () ){
-        print("started")
         let db = Firestore.firestore()
         let optionsRef = db.collection("Options")
         // Get options that are compatible with the current chapter or has the value 0 (always compatible).
@@ -113,8 +113,8 @@ class Story {
                             case.success(let option):
                                 if let option = option {
                                     if self.checkAvailableOption(option: option) {
+                                        print(option.name)
                                         self.availableOptions.append(option)
-                                        print(option)
                                     }
                                 }
                             case.failure(let err):

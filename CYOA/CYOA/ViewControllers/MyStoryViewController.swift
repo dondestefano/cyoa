@@ -26,12 +26,10 @@ class MyStoryViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.storyTextLabel.text = myStory.path[indexPath.row].chapterText
         
         return cell
-        
     }
     
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         let nib = UINib(nibName: "MyStoryCell", bundle: nil)

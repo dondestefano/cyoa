@@ -14,7 +14,7 @@ class MainMenuViewController: UIViewController {
     var myStory = Story()
     let storySegueID = "segueFromMainMenuToStory"
     let myStorySegueID = "segueFromMainMenuToMyStory"
-    let newStorySegueID = "newStorySegueID"
+    let newStorySegueID = "mainMenuToNewStorySegueID"
     
     @IBOutlet weak var continueButton: UIButton!
     
@@ -73,14 +73,17 @@ class MainMenuViewController: UIViewController {
             destinationVC.myStory = myStory
         }
         
-        else if segue.identifier == newStorySegueID {
-            let destinationVC = segue.destination as! ViewController
-            destinationVC.myStory = myStory
+        else if segue.identifier == storySegueID {
+            let destinationVC = segue.destination as! NewStoryViewController
+            destinationVC.newStory = myStory
         }
     }
     
     @IBAction func unwindToRootViewController(segue: UIStoryboardSegue) {
-
+        if segue.source is ViewController {
+            if let senderVC = segue.source as? ViewController{
+                myStory = senderVC.myStory
+            }
+        }
     }
-
 }

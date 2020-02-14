@@ -34,7 +34,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         optionsTableView.dataSource = self
         optionsTableView.delegate = self
         // Do any additional setup after loading the view
-
     }
 
 //* TableView functions *//
@@ -104,6 +103,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //* Segues *//
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == myStorySegueID {
+            let destinationVC = segue.destination as! MyStoryViewController
+            destinationVC.myStory = myStory
+        }
+        
+        else if segue.identifier == myStorySegueID {
             let destinationVC = segue.destination as! MyStoryViewController
             destinationVC.myStory = myStory
         }

@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
-class NewGameViewController: UIViewController {
-    
-    var myStory = Story()
+class NewStoryViewController: UIViewController {
+
+    var newStory = Story()
     let storySegueID = "newStoryToStorySegueID"
-
+    
     @IBOutlet weak var playerNameTextField: UITextField!
     @IBOutlet weak var startStoryButton: UIButton!
     @IBOutlet weak var newStoryTextLabel: UILabel!
@@ -24,22 +25,28 @@ class NewGameViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+        
+
     @IBAction func playerNameTextFieldWasSelected(_ sender: Any) {
+        playerNameTextField.text = nil
         startStoryButton.alpha = 1
-        startStoryButton.setTitleColor(UIColor(red: 100, green: 0 , blue: 0, alpha: 0), for: .normal)
         startStoryButton.isUserInteractionEnabled = true
     }
+    
+    
     @IBAction func startNewStory(_ sender: Any) {
-        let playerName = playerNameTextField.text
-        myStory = Story(playerName: playerName ?? "Stranger")
+        guard let playerName = playerNameTextField.text else {return}
+        newStory = Story(playerName: playerName)
+        if let name = newStory.player?.name{
+            print(name)
+        }
         performSegue(withIdentifier: storySegueID, sender: Any?.self)
     }
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == storySegueID {
-            let destinationVC = segue.destination as! MyStoryViewController
-            destinationVC.myStory = myStory
+            let destinationVC = segue.destination as! ViewController
+            destinationVC.myStory = newStory
         }
     }
 }
