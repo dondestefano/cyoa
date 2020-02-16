@@ -22,10 +22,15 @@
 		0C3489FA23E72CD0007CC471 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C3489F923E72CD0007CC471 /* GoogleService-Info.plist */; };
 		0C3489FD23E8AE89007CC471 /* MyStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3489FB23E8AE89007CC471 /* MyStoryCell.swift */; };
 		0C3489FE23E8AE89007CC471 /* MyStoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3489FC23E8AE89007CC471 /* MyStoryCell.xib */; };
+		0C91BDEF23F88757008A3FEA /* CYOA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C91BDED23F88757008A3FEA /* CYOA.xcdatamodeld */; };
+		0C91BDF623F894C2008A3FEA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91BDF523F894C1008A3FEA /* CoreDataStack.swift */; };
 		0CAD447E23E1E4FC0062CD7F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD447D23E1E4FC0062CD7F /* Player.swift */; };
 		0CAD448023E1FD5A0062CD7F /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD447F23E1FD5A0062CD7F /* Story.swift */; };
-		0CAD44C623E356D40062CD7F /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD44C523E356D40062CD7F /* Attribute.swift */; };
 		0CAD44C823E35D5F0062CD7F /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CAD44C723E35D5F0062CD7F /* Option.swift */; };
+		0CDC422823F8A618000FB28D /* Attribute+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC422723F8A618000FB28D /* Attribute+CoreDataProperties.swift */; };
+		0CDC422923F8A618000FB28D /* Option+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC422423F8A617000FB28D /* Option+CoreDataProperties.swift */; };
+		0CDC422A23F8A618000FB28D /* Attribute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC422623F8A617000FB28D /* Attribute+CoreDataClass.swift */; };
+		0CDC422B23F8A618000FB28D /* Option+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC422523F8A617000FB28D /* Option+CoreDataClass.swift */; };
 		6D300B8A092BB3B2480BADBB /* Pods_CYOA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE197563FEE974D6ACF016B6 /* Pods_CYOA.framework */; };
 		8059A370C11BEE93BAFA9C67 /* Pods_CYOA_CYOAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB639D174B33B3E49EBECCB /* Pods_CYOA_CYOAUITests.framework */; };
 		832B97FDFC20D2D1DA34D4B2 /* Pods_CYOATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7240FE9E67AEAC6AAAC3372 /* Pods_CYOATests.framework */; };
@@ -71,10 +76,15 @@
 		0C3489F923E72CD0007CC471 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0C3489FB23E8AE89007CC471 /* MyStoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStoryCell.swift; sourceTree = "<group>"; };
 		0C3489FC23E8AE89007CC471 /* MyStoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyStoryCell.xib; sourceTree = "<group>"; };
+		0C91BDEE23F88757008A3FEA /* CYOA.xcdatamodeld .xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CYOA.xcdatamodeld .xcdatamodel"; sourceTree = "<group>"; };
+		0C91BDF523F894C1008A3FEA /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		0CAD447D23E1E4FC0062CD7F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		0CAD447F23E1FD5A0062CD7F /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
-		0CAD44C523E356D40062CD7F /* Attribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
 		0CAD44C723E35D5F0062CD7F /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		0CDC422423F8A617000FB28D /* Option+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Option+CoreDataProperties.swift"; path = "/Users/luigianonymus/Documents/GitHub/cyoa/CYOA/CYOA/Objects/Option+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		0CDC422523F8A617000FB28D /* Option+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Option+CoreDataClass.swift"; path = "/Users/luigianonymus/Documents/GitHub/cyoa/CYOA/CYOA/Objects/Option+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		0CDC422623F8A617000FB28D /* Attribute+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Attribute+CoreDataClass.swift"; path = "/Users/luigianonymus/Documents/GitHub/cyoa/CYOA/CYOA/Objects/Attribute+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		0CDC422723F8A618000FB28D /* Attribute+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Attribute+CoreDataProperties.swift"; path = "/Users/luigianonymus/Documents/GitHub/cyoa/CYOA/CYOA/Objects/Attribute+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		2BD0DEED71F7851C833643EC /* Pods-CYOA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOA.release.xcconfig"; path = "Target Support Files/Pods-CYOA/Pods-CYOA.release.xcconfig"; sourceTree = "<group>"; };
 		4D66ECF3C67C6C0B0E62DEFC /* Pods-CYOATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOATests.release.xcconfig"; path = "Target Support Files/Pods-CYOATests/Pods-CYOATests.release.xcconfig"; sourceTree = "<group>"; };
 		5AD81810B3700D8524A71B81 /* Pods-CYOATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOATests.debug.xcconfig"; path = "Target Support Files/Pods-CYOATests/Pods-CYOATests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +148,7 @@
 		0C16807D23DC641300500538 /* CYOA */ = {
 			isa = PBXGroup;
 			children = (
+				0C91BDF423F894AB008A3FEA /* CoreData */,
 				0C348A0223E95CBA007CC471 /* Objects */,
 				0C348A0123E95C08007CC471 /* ViewControllers */,
 				0C16807E23DC641300500538 /* AppDelegate.swift */,
@@ -185,13 +196,25 @@
 		0C348A0223E95CBA007CC471 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				0CDC422623F8A617000FB28D /* Attribute+CoreDataClass.swift */,
+				0CDC422723F8A618000FB28D /* Attribute+CoreDataProperties.swift */,
+				0CDC422523F8A617000FB28D /* Option+CoreDataClass.swift */,
+				0CDC422423F8A617000FB28D /* Option+CoreDataProperties.swift */,
 				0C1680B223DC6D8400500538 /* Chapter.swift */,
 				0CAD447D23E1E4FC0062CD7F /* Player.swift */,
 				0CAD447F23E1FD5A0062CD7F /* Story.swift */,
-				0CAD44C523E356D40062CD7F /* Attribute.swift */,
 				0CAD44C723E35D5F0062CD7F /* Option.swift */,
 			);
 			path = Objects;
+			sourceTree = "<group>";
+		};
+		0C91BDF423F894AB008A3FEA /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				0C91BDED23F88757008A3FEA /* CYOA.xcdatamodeld */,
+				0C91BDF523F894C1008A3FEA /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		9404FADD165C2E44EC859319 /* Frameworks */ = {
@@ -458,16 +481,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CDC422A23F8A618000FB28D /* Attribute+CoreDataClass.swift in Sources */,
+				0C91BDF623F894C2008A3FEA /* CoreDataStack.swift in Sources */,
+				0CDC422923F8A618000FB28D /* Option+CoreDataProperties.swift in Sources */,
 				0CAD44C823E35D5F0062CD7F /* Option.swift in Sources */,
 				0C193FF323F5E397006A7E0C /* NewStoryViewController.swift in Sources */,
 				0C16808323DC641300500538 /* ViewController.swift in Sources */,
 				0C193FA823F32897006A7E0C /* MainMenuViewController.swift in Sources */,
+				0C91BDEF23F88757008A3FEA /* CYOA.xcdatamodeld in Sources */,
+				0CDC422823F8A618000FB28D /* Attribute+CoreDataProperties.swift in Sources */,
 				0C3489FD23E8AE89007CC471 /* MyStoryCell.swift in Sources */,
 				0C1680B323DC6D8400500538 /* Chapter.swift in Sources */,
 				0C16807F23DC641300500538 /* AppDelegate.swift in Sources */,
 				0CAD447E23E1E4FC0062CD7F /* Player.swift in Sources */,
 				0C193FEF23F5E26B006A7E0C /* MyStoryViewController.swift in Sources */,
-				0CAD44C623E356D40062CD7F /* Attribute.swift in Sources */,
+				0CDC422B23F8A618000FB28D /* Option+CoreDataClass.swift in Sources */,
 				0C16808123DC641300500538 /* SceneDelegate.swift in Sources */,
 				0CAD448023E1FD5A0062CD7F /* Story.swift in Sources */,
 			);
@@ -798,6 +826,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0C91BDED23F88757008A3FEA /* CYOA.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0C91BDEE23F88757008A3FEA /* CYOA.xcdatamodeld .xcdatamodel */,
+			);
+			currentVersion = 0C91BDEE23F88757008A3FEA /* CYOA.xcdatamodeld .xcdatamodel */;
+			path = CYOA.xcdatamodeld;
+			sourceTree = "<group>";
+			usesTabs = 0;
+			versionGroupType = wrapper.xcdatamodel;
+			wrapsLines = 1;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0C16807323DC641300500538 /* Project object */;
 }

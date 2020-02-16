@@ -7,22 +7,27 @@
 //
 
 import Foundation
+import CoreData
 
 class Player {
-    public let name : String
+    public let name : String?
     public var choices = [String]()
-    private var attributes = [Attribute]()
-    
+    private var attributes: [Attribute] = []
+
     init(name: String) {
         self.name = name
-        let heroic = Attribute(name: "Heroic", value: 0)
-        let agressive = Attribute(name: "Agressive", value: 0)
-        let charismatic = Attribute(name: "Charismatic", value: 0)
-        let lucky = Attribute(name: "Lucky", value: 5)
-        self.attributes.append(heroic)
-        self.attributes.append(agressive)
-        self.attributes.append(charismatic)
-        self.attributes.append(lucky)
+        setAttribute(attributeName: "Heroic", attributeValue: 0)
+        setAttribute(attributeName: "Agressive", attributeValue: 0)
+        setAttribute(attributeName: "Charismatic", attributeValue: 0)
+        setAttribute(attributeName: "Lucky", attributeValue: 5)
+//        let heroic = Attribute(name: "Heroic", value: 0)
+//        let agressive = Attribute(name: "Agressive", value: 0)
+//        let charismatic = Attribute(name: "Charismatic", value: 0)
+//        let lucky = Attribute(name: "Lucky", value: 5)
+//        self.attributes.append(heroic)
+//        self.attributes.append(agressive)
+//        self.attributes.append(charismatic)
+//        self.attributes.append(lucky)
     }
     
     func madeChoice(choice: String){
@@ -40,7 +45,7 @@ class Player {
     }
     
 //* Attribute getters and setters *//
-    func updateAttribute(attributeToUpdate: String, value: Int){
+    func updateAttribute(attributeToUpdate: String, value: Int64){
         for attribute in attributes{
             if attributeToUpdate == attribute.name {
                 attribute.updateValue(value: value)
@@ -48,12 +53,21 @@ class Player {
         }
     }
 
-    func checkAttribute(attributeToCheck: String) -> Int{
+    func checkAttribute(attributeToCheck: String) -> Int64{
         for attribute in attributes{
             if attributeToCheck == attribute.name {
                 return attribute.checkValue()
             }
         }
         return 0
+    }
+    
+    func setAttribute(attributeName: String, attributeValue: Int) {
+        let attribute = Attribute(context: CoreDataHandler.context)
+        attribute.name = attributeName
+        attribute.value = Int64(attributeValue)
+        print(attribute)
+        self.attributes.append(attribute)
+        
     }
 }

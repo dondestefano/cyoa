@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G103" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Attribute" representedClassName="Attribute" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="value" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CoreStory" representedClassName="CoreStory" syncable="YES">
+        <attribute name="availableOptions" optional="YES" attributeType="Transformable"/>
+        <attribute name="currentChapter" optional="YES" attributeType="Transformable"/>
+        <attribute name="currentOption" optional="YES" attributeType="Transformable"/>
+        <attribute name="db" optional="YES" attributeType="Transformable"/>
+        <attribute name="path" optional="YES" attributeType="Transformable"/>
+        <attribute name="player" optional="YES" attributeType="Transformable"/>
+    </entity>
+    <entity name="Option" representedClassName="Option" syncable="YES">
+        <attribute name="changedAttribute" optional="YES" attributeType="String"/>
+        <attribute name="changedAttributeValue" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="compatibleChapter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="outcome" optional="YES" attributeType="String"/>
+        <attribute name="requiredAttribute" optional="YES" attributeType="String"/>
+        <attribute name="requiredAttributeValue" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="vitalChoice" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="Attribute" positionX="-45" positionY="0" width="128" height="73"/>
+        <element name="CoreStory" positionX="-36" positionY="81" width="128" height="133"/>
+        <element name="Option" positionX="-45" positionY="18" width="128" height="163"/>
+    </elements>
+</model>
