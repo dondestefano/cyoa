@@ -100,14 +100,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
-//* Segues *//
+    @IBAction func showPopUpMenu(_ sender: Any) {
+        let popUpMenuVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popUpStoryBoardID")
+        self.addChild(popUpMenuVC)
+        popUpMenuVC.view.frame = self.view.frame
+        self.view.addSubview(popUpMenuVC.view)
+        popUpMenuVC.didMove(toParent: self)
+    }
+    
+    //* Segues *//
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == myStorySegueID {
-            let destinationVC = segue.destination as! MyStoryViewController
-            destinationVC.myStory = myStory
-        }
-        
-        else if segue.identifier == myStorySegueID {
             let destinationVC = segue.destination as! MyStoryViewController
             destinationVC.myStory = myStory
         }

@@ -31,6 +31,7 @@
 		0CDC422923F8A618000FB28D /* Option+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC422423F8A617000FB28D /* Option+CoreDataProperties.swift */; };
 		0CDC422A23F8A618000FB28D /* Attribute+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC422623F8A617000FB28D /* Attribute+CoreDataClass.swift */; };
 		0CDC422B23F8A618000FB28D /* Option+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC422523F8A617000FB28D /* Option+CoreDataClass.swift */; };
+		0CDC424123F96BCF000FB28D /* PopUpMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDC424023F96BCF000FB28D /* PopUpMenuViewController.swift */; };
 		6D300B8A092BB3B2480BADBB /* Pods_CYOA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE197563FEE974D6ACF016B6 /* Pods_CYOA.framework */; };
 		8059A370C11BEE93BAFA9C67 /* Pods_CYOA_CYOAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB639D174B33B3E49EBECCB /* Pods_CYOA_CYOAUITests.framework */; };
 		832B97FDFC20D2D1DA34D4B2 /* Pods_CYOATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7240FE9E67AEAC6AAAC3372 /* Pods_CYOATests.framework */; };
@@ -85,6 +86,7 @@
 		0CDC422523F8A617000FB28D /* Option+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Option+CoreDataClass.swift"; path = "/Users/luigianonymus/Documents/GitHub/cyoa/CYOA/CYOA/Objects/Option+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		0CDC422623F8A617000FB28D /* Attribute+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Attribute+CoreDataClass.swift"; path = "/Users/luigianonymus/Documents/GitHub/cyoa/CYOA/CYOA/Objects/Attribute+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		0CDC422723F8A618000FB28D /* Attribute+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Attribute+CoreDataProperties.swift"; path = "/Users/luigianonymus/Documents/GitHub/cyoa/CYOA/CYOA/Objects/Attribute+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		0CDC424023F96BCF000FB28D /* PopUpMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpMenuViewController.swift; sourceTree = "<group>"; };
 		2BD0DEED71F7851C833643EC /* Pods-CYOA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOA.release.xcconfig"; path = "Target Support Files/Pods-CYOA/Pods-CYOA.release.xcconfig"; sourceTree = "<group>"; };
 		4D66ECF3C67C6C0B0E62DEFC /* Pods-CYOATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOATests.release.xcconfig"; path = "Target Support Files/Pods-CYOATests/Pods-CYOATests.release.xcconfig"; sourceTree = "<group>"; };
 		5AD81810B3700D8524A71B81 /* Pods-CYOATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CYOATests.debug.xcconfig"; path = "Target Support Files/Pods-CYOATests/Pods-CYOATests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				0C193FA723F32897006A7E0C /* MainMenuViewController.swift */,
 				0C16808223DC641300500538 /* ViewController.swift */,
 				0C193FF223F5E397006A7E0C /* NewStoryViewController.swift */,
+				0CDC424023F96BCF000FB28D /* PopUpMenuViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				0C16807F23DC641300500538 /* AppDelegate.swift in Sources */,
 				0CAD447E23E1E4FC0062CD7F /* Player.swift in Sources */,
 				0C193FEF23F5E26B006A7E0C /* MyStoryViewController.swift in Sources */,
+				0CDC424123F96BCF000FB28D /* PopUpMenuViewController.swift in Sources */,
 				0CDC422B23F8A618000FB28D /* Option+CoreDataClass.swift in Sources */,
 				0C16808123DC641300500538 /* SceneDelegate.swift in Sources */,
 				0CAD448023E1FD5A0062CD7F /* Story.swift in Sources */,
