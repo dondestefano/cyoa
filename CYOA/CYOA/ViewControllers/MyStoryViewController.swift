@@ -22,16 +22,14 @@ class MyStoryViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: storyCellID, for: indexPath) as! MyStoryCell
         
-        cell.chapterTextLabel.text = "Chapter \(myStory.path[indexPath.row].chapterNumber ?? 0)"
+        cell.chapterTextLabel.text = "Chapter \(myStory.path[indexPath.row].chapterNumber)"
         cell.storyTextLabel.text = myStory.path[indexPath.row].chapterText
         
         return cell
-        
     }
     
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         let nib = UINib(nibName: "MyStoryCell", bundle: nil)
@@ -42,8 +40,4 @@ class MyStoryViewController: UIViewController, UITableViewDataSource, UITableVie
 
         // Do any additional setup after loading the view.
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        myStoryTableView.reloadData()
-//    }
 }

@@ -11,7 +11,7 @@ import Firebase;
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
-    var myStory = Story(playerName: "Michael")
+    var myStory = Story()
     var currentOption : Option?
     let optionID = "optionsCellID"
     let myStorySegueID = "segueToMyStory"
@@ -20,20 +20,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var storyText: UITextView!
     @IBOutlet weak var chapterLabel: UILabel!
     @IBOutlet weak var optionsTableView: UITableView!
-    
-    @IBAction func update(_ sender: Any) {
-        refresh()
-    }
+    @IBOutlet weak var choiceButton: UIButton!
     
     override func viewDidLoad() {
-        self.myStory.makePath() { self.refresh()  }
+        
+        // Load chapter one if the current chapter is zero.
+        // Otherwise just refresh.
+        if myStory.currentChapter.chapterNumber == 0 {
+            self.myStory.nextChapter{ self.refresh() }
+        } else {refresh()}
+        
         super.viewDidLoad()
         optionsTableView.dataSource = self
         optionsTableView.delegate = self
         // Do any additional setup after loading the view
-
     }
 
+//* TableView functions *//
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         myStory.availableOptions.count
     }
@@ -44,54 +47,67 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = option.name
         
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let option = myStory.availableOptions[indexPath.row]
         currentOption = option
-        guard let chosenOption = currentOption else {return}
-        print(chosenOption.name)
+        choiceButton.isUserInteractionEnabled = true
+        choiceButton.alpha = 1
     }
     
-    // Update functions //
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.alpha = 0
+        
+        UIView.animate(withDuration: 2, delay: 0.8 * Double(indexPath.row), animations: {cell.alpha = 1})
+    }
+    
+//* Update functions *//
     func updateStoryText() {
-        print("Startade")
         guard let currentStoryText = myStory.currentChapter.chapterText else {return}
-        storyText.text = "\(currentOption?.outcome ?? "") \n\n\(currentStoryText)"
+        storyText.text = currentStoryText
     }
     
     func updateChapterLabel() {
-        chapterLabel.text = "Chapter \(myStory.currentChapter.chapterNumber ?? 0)"
+        chapterLabel.text = "Chapter \(myStory.currentChapter.chapterNumber )"
     }
     
     func refresh() {
-        updateStoryText()
-        updateChapterLabel()
-        optionsTableView.reloadData()
         hideStoryText()
+        currentOption = nil
+        choiceButton.isUserInteractionEnabled = false
+        choiceButton.alpha = 0.4
     }
     
-    // Actions //
+//* Actions *//
     @IBAction func makeChoice(_ sender: UIButton) {
         guard let choice = currentOption else {return}
         myStory.pathChosen(choice: choice) {self.refresh()}
-        print(myStory.player?.checkAttribute(attributeToCheck: choice.changedAttribute ?? "") ?? 99)
     }
     
     
-    // Animations //
+//* Animations *//
     func hideStoryText(){
-        UIView.animate(withDuration: 1.0, animations: {self.storyText.alpha = 0.0}, completion: showStoryText(finished:))
+        UIView.animate(withDuration: 0.5, animations: {self.storyText.alpha = 0.0}, completion: revealNextChapter(finished:))
     }
     
-    func showStoryText(finished: Bool){
+    func revealNextChapter(finished: Bool){
+        updateChapterLabel()
+        updateStoryText()
         UIView.animate(withDuration: 1.5, animations: {self.storyText.alpha = 1.0})
+        optionsTableView.reloadData()
     }
     
-    // Segues //
     
+//* Segues *//
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == myStorySegueID {
+            let destinationVC = segue.destination as! MyStoryViewController
+            destinationVC.myStory = myStory
+        }
+        
+        else if segue.identifier == myStorySegueID {
             let destinationVC = segue.destination as! MyStoryViewController
             destinationVC.myStory = myStory
         }

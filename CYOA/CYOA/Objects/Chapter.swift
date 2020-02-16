@@ -10,11 +10,21 @@ import Foundation
 
 class Chapter : Codable {
     
-    var chapterNumber: Int?
+    var chapterNumber: Int
     var chapterText : String?
+    var previousChapter: Int?
+    var requiredChoice: String?
     
     init (number: Int, text: String) {
-        self.chapterNumber = number
+        self.chapterNumber = 0
         self.chapterText = text
     }
+    
+    init (number: Int, text: String, previous: Int, choice: String) {
+        self.chapterNumber = number
+        self.chapterText = text
+        self.previousChapter = previous
+        self.requiredChoice = choice
+    }
+    
 }

@@ -15,6 +15,7 @@ class Story {
     var path = [Chapter]()
     var availableOptions = [Option]()
     var currentChapter : Chapter
+    var currentOption : Option?
     var db : Firestore!
     
     init(){
@@ -22,92 +23,136 @@ class Story {
     }
     
     init(playerName: String){
+        print(playerName)
         player = Player(name: playerName)
         currentChapter = Chapter(number: 0, text: "")
     }
     
-    // Progression functions //
+    func formatText(){
+        var formatedText = self.currentChapter.chapterText?.replacingOccurrences(of: "_b", with: "\n")
+        formatedText = formatedText?.replacingOccurrences(of: ":player:", with: "\(self.player?.name ?? "Unknown")")
+        self.currentChapter.chapterText = formatedText
+    }
+    
+//* Progression functions *//
     func pathChosen(choice: Option, completion: @escaping () -> ()) {
-        player?.madeChoice(choice: choice.outcome)
+        currentOption = choice
+        
+        // If the option came with a vital choice append it.
+        if let vitalChoice = choice.vitalChoice{
+            player?.madeChoice(choice: vitalChoice)
+        }
+        
+        // Update the players attributes according to the chosen option.
         let attributeValue = choice.changedAttributeValue
         player?.updateAttribute(attributeToUpdate: choice.changedAttribute ?? "", value: attributeValue ?? 0)
-        makePath(completion: completion)
-    }
-    
-    //Check the player and choose the next chapter depending on its stats
-    func makePath(completion: @escaping () -> ()){
-        let currentHeroicStat = self.player?.checkAttribute(attributeToCheck: "Heroic")
-
-            self.availableOptions.removeAll()
-              if currentHeroicStat == 0 {
-                self.nextChapter(chapterID: "ch1", firstOptionID: "op1", secondOptionID: "op11", thirdOptionID: nil, completion: completion)
-             }
-             else if currentHeroicStat == 1 {
-                self.nextChapter(chapterID: "ch2+1", firstOptionID: "op1", secondOptionID: nil, thirdOptionID: nil, completion: completion)
-             }
-             else if currentHeroicStat == -1 {
-                self.nextChapter(chapterID: "ch2-1", firstOptionID: "op11", secondOptionID: nil, thirdOptionID: nil, completion: completion)
-             }
-    }
-    
-    //Retrieve a chapter and options from Firebase
-    func nextChapter(chapterID: String, firstOptionID: String, secondOptionID: String?, thirdOptionID: String?, completion: @escaping () -> ()) {
-            self.readChapterFromDB(chapterID: chapterID, completion: completion)
-            self.readOptionsFromDB(optionID: firstOptionID, completion: completion)
         
-            guard let secondOption = secondOptionID else {return}
-            self.readOptionsFromDB(optionID: secondOption, completion: completion)
-        
-            guard let thirdOption = thirdOptionID else {return}
-            self.readOptionsFromDB(optionID: thirdOption, completion: completion)
+        // With the attributes and choice in place - generate the next chapter.
+        nextChapter(completion: completion)
     }
     
-    // Database readers //
-    func readChapterFromDB(chapterID : String, completion: @escaping () -> () ){
+    func nextChapter(completion: @escaping () -> ()){
+        self.readChapterFromDB(chapterNumber: currentChapter.chapterNumber, completion: completion)
+    }
+    
+//* Database readers *//
+    func readChapterFromDB(chapterNumber : Int, completion: @escaping () -> () ){
         let db = Firestore.firestore()
-        let textRef = db.collection("chapters")
-        textRef.document(chapterID).getDocument(){ (document , error) in
-            if let document = document, document.exists {
-                let result = Result {
-                    try document.data(as: Chapter.self)
-                }
-
-                switch result {
-                    case.success(let chapter):
-                        if let chapter = chapter {
-                            self.currentChapter = chapter
-                            self.path.append(self.currentChapter)
-                            completion()
+        let chapterRef = db.collection("chapters")
+        chapterRef.whereField("previousChapter", in: [currentChapter.chapterNumber])
+        .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let result = Result {
+                            try document.data(as: Chapter.self)
                         }
-                    case.failure(let error):
-                        print("Error decoding: \(error)")
-                }
+
+                        switch result {
+                            case.success(let chapter):
+                                if let chapter = chapter {
+                                    // Check if the chapter is available.
+                                    if self.checkAvailableChapter(chapter: chapter){
+                                        // If there are more than one compatible chapters
+                                        // determine which chapter to choose.
+                                        if self.currentChapter.requiredChoice != nil && self.currentChapter.chapterNumber != chapterNumber {
+                                            break
+                                        }
+                                        else {self.currentChapter = chapter}
+                                    }
+                                }
+                            case.failure(let error):
+                                print("Error decoding chapter: \(error)")
+                            }
+                        }
+                self.currentChapter.chapterText = "\(self.currentOption?.outcome ?? "")\(self.currentChapter.chapterText ?? "Failed to load text.")"
+                self.formatText()
+                self.path.append(self.currentChapter)                
+                //When the chapter is set - Remove previous options and get new ones.
+                self.availableOptions.removeAll()
+                self.readOptionsFromDB (completion: completion)
             }
         }
     }
     
-    
-    func readOptionsFromDB(optionID : String, completion: @escaping () -> () ){
+    func readOptionsFromDB(completion: @escaping () -> () ){
         let db = Firestore.firestore()
-        let textRef = db.collection("Options")
-        textRef.document(optionID).getDocument(){ (document , error) in
-            if let document = document, document.exists {
-                let result = Result {
-                    try document.data(as: Option.self)
-                }
-                    
-                switch result {
-                    case.success(let option):
-                        if let option = option {
-                            self.availableOptions.append(option)
-                            completion()
+        let optionsRef = db.collection("Options")
+        // Get options that are compatible with the current chapter or has the value 0 (always compatible).
+        optionsRef.whereField("compatibleChapter", in: [currentChapter.chapterNumber, 0])
+        .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let result = Result {
+                            try document.data(as: Option.self)
                         }
-                    case.failure(let error):
-                        print("Error decoding: \(error)")
+                        switch result {
+                            case.success(let option):
+                                if let option = option {
+                                    if self.checkAvailableOption(option: option) {
+                                        print(option.name)
+                                        self.availableOptions.append(option)
+                                    }
+                                }
+                            case.failure(let err):
+                                print("Error decoding option: \(err)")
+                        }
+                    }
+                    completion()
                 }
+        }
+    }
+    
+//* Availability checks *//
+    func checkAvailableChapter(chapter: Chapter) -> Bool {
+        let chapter = chapter
+        // Check if the chapter has a required choice.
+        if let requiredChoice = chapter.requiredChoice {
+            // Check if the player has made the required choice.
+            if self.player?.checkForChoice(checkingForChoice: requiredChoice) ?? false{
+                return true
+            } else {return false}
+        }
+        // If the chapter doesn't have a required choice return true.
+        else {return true}
+    }
+    
+    func checkAvailableOption(option: Option) -> Bool {
+        let option = option
+        // Check if the player has the required attribute value
+        guard let requiredAttribute = option.requiredAttribute else {return false}
+        guard let currentAttributeValue = self.player?.checkAttribute(attributeToCheck: requiredAttribute) else {return false}
+        if option.requiredAttributeValue ?? 99 <= currentAttributeValue {
+            // Check if the player has allready made this choice
+            if self.player?.checkForChoice(checkingForChoice: option.vitalChoice ?? "") == false {
+                // If the player has the required value and hasn't made this
+                // choice before return true
+                return true
             }
         }
+        return false
     }
 }
-
-
