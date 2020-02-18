@@ -20,7 +20,6 @@ class PopUpMenuViewController: UIViewController {
 
     @IBAction func closePopUp(_ sender: Any) {
         self.removeAnimation()
-        
     }
     
     @IBAction func goToMyStory(_ sender: Any) {
@@ -31,6 +30,13 @@ class PopUpMenuViewController: UIViewController {
     @IBAction func goToMainMenu(_ sender: Any) {
         self.removeAnimation()
         parent?.performSegue(withIdentifier: "unwindSegue", sender: Any?.self)
+    }
+    // Close the pop-up if the user presses anything but the buttons.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let _: UITouch? = touches.first
+        self.willMove(toParent: nil)
+        self.view.removeFromSuperview()
+        self.removeFromParent()
     }
     
 //* Animations *//
