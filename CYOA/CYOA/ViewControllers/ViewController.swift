@@ -45,6 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: optionID, for: indexPath)
         let option = myStory.availableOptions[indexPath.row]
         cell.textLabel?.text = option.name
+//        cell.selectionStyle = .none
         
         return cell
         
@@ -55,11 +56,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         currentOption = option
         choiceButton.isUserInteractionEnabled = true
         choiceButton.alpha = 1
+//        let cell  = tableView.cellForRow(at: indexPath)
+//        cell?.contentView.backgroundColor = .red
     }
+    
+
+
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        let cell  = tableView.cellForRow(at: indexPath)
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        cell?.contentView.backgroundColor = .clear
+//    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.alpha = 0
-        
         UIView.animate(withDuration: 2, delay: 0.8 * Double(indexPath.row), animations: {cell.alpha = 1})
     }
     
@@ -100,14 +110,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     
-//* Segues *//
+    @IBAction func showPopUpMenu(_ sender: Any) {
+        let popUpMenuVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popUpStoryBoardID")
+        self.addChild(popUpMenuVC)
+        popUpMenuVC.view.frame = self.view.frame
+        self.view.addSubview(popUpMenuVC.view)
+        popUpMenuVC.didMove(toParent: self)
+    }
+    
+    //* Segues *//
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == myStorySegueID {
-            let destinationVC = segue.destination as! MyStoryViewController
-            destinationVC.myStory = myStory
-        }
-        
-        else if segue.identifier == myStorySegueID {
             let destinationVC = segue.destination as! MyStoryViewController
             destinationVC.myStory = myStory
         }

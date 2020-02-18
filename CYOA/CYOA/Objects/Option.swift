@@ -18,13 +18,13 @@ class Option : Codable {
     public var requiredAttribute: String?
     public var requiredAttributeValue: Int?
     public var compatibleChapter: Int?
-    
-    
+
+
     init (name: String, outcome: String) {
         self.name = name
         self.outcome = outcome
     }
-    
+
     init (name: String, outcome: String, vital: String, attribute: String, attributeValue: Int, reqAttribute: String, reqAttributeValue: Int, chapter: Int){
         self.name = name
         self.outcome = outcome

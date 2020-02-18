@@ -43,8 +43,12 @@ class MainMenuViewController: UIViewController {
     @IBAction func newStory(_ sender: Any) {
         if self.myStory.currentChapter.chapterNumber == 0 {
             performSegue(withIdentifier: newStorySegueID, sender: (Any).self)
-        } else {
-            let warning = UIAlertController(title: "Warning!", message: "Starting a new story will erase your current story. \nAre you sure you want to continue?", preferredStyle: .alert)
+        } else { deleteStoryWarning() }
+        
+    }
+    
+    func deleteStoryWarning() {
+        let warning = UIAlertController(title: "Warning!", message: "Starting a new story will erase your current story. \nAre you sure you want to continue?", preferredStyle: .alert)
             
             let newStory = UIAlertAction(title: "Delete my story", style: .default) {
                     action in
@@ -58,7 +62,6 @@ class MainMenuViewController: UIViewController {
             warning.addAction(newStory)
                 
             present(warning, animated: true)
-        }
     }
     
 //* Segues *//
@@ -73,7 +76,7 @@ class MainMenuViewController: UIViewController {
             destinationVC.myStory = myStory
         }
         
-        else if segue.identifier == storySegueID {
+        else if segue.identifier == newStorySegueID {
             let destinationVC = segue.destination as! NewStoryViewController
             destinationVC.newStory = myStory
         }

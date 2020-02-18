@@ -25,22 +25,34 @@ class NewStoryViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-        
 
+        
+    // Enable the start button when the player has added a name.
     @IBAction func playerNameTextFieldWasSelected(_ sender: Any) {
+
         playerNameTextField.text = nil
         startStoryButton.alpha = 1
         startStoryButton.isUserInteractionEnabled = true
+        startStoryButton.setTitleColor(UIColor.red, for: .normal)
     }
     
+    // Warn the user if no name was entered.
+    func noNameEnteredWarning() {
+        let warning = UIAlertController(title: "No name entered!", message: "Please enter your character's name.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Ok", style: .cancel)
+        warning.addAction(cancelAction)
+        present(warning, animated: true)
+    }
     
     @IBAction func startNewStory(_ sender: Any) {
-        guard let playerName = playerNameTextField.text else {return}
-        newStory = Story(playerName: playerName)
-        if let name = newStory.player?.name{
-            print(name)
-        }
-        performSegue(withIdentifier: storySegueID, sender: Any?.self)
+        if playerNameTextField.text != "" {
+            guard let playerName = playerNameTextField.text else {return}
+            newStory = Story(playerName: playerName)
+            if let name = newStory.player?.name{
+                print(name)
+            }
+            performSegue(withIdentifier: storySegueID, sender: Any?.self)
+        } else { noNameEnteredWarning() }
     }
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

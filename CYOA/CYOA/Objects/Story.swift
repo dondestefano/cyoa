@@ -9,52 +9,53 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import CoreData
 
 class Story {
     var player : Player?
     var path = [Chapter]()
-    var availableOptions = [Option]()
+    var availableOptions : [Option] = []
     var currentChapter : Chapter
     var currentOption : Option?
     var db : Firestore!
-    
+
     init(){
         currentChapter = Chapter(number: 0, text: "")
     }
-    
+
     init(playerName: String){
         print(playerName)
         player = Player(name: playerName)
         currentChapter = Chapter(number: 0, text: "")
     }
-    
+
     func formatText(){
         var formatedText = self.currentChapter.chapterText?.replacingOccurrences(of: "_b", with: "\n")
         formatedText = formatedText?.replacingOccurrences(of: ":player:", with: "\(self.player?.name ?? "Unknown")")
         self.currentChapter.chapterText = formatedText
     }
-    
+
 //* Progression functions *//
     func pathChosen(choice: Option, completion: @escaping () -> ()) {
         currentOption = choice
-        
+
         // If the option came with a vital choice append it.
         if let vitalChoice = choice.vitalChoice{
             player?.madeChoice(choice: vitalChoice)
         }
-        
+
         // Update the players attributes according to the chosen option.
         let attributeValue = choice.changedAttributeValue
-        player?.updateAttribute(attributeToUpdate: choice.changedAttribute ?? "", value: attributeValue ?? 0)
-        
+        player?.updateAttribute(attributeToUpdate: choice.changedAttribute ?? "", value: Int64(attributeValue ?? 0))
+
         // With the attributes and choice in place - generate the next chapter.
         nextChapter(completion: completion)
     }
-    
+
     func nextChapter(completion: @escaping () -> ()){
         self.readChapterFromDB(chapterNumber: currentChapter.chapterNumber, completion: completion)
     }
-    
+
 //* Database readers *//
     func readChapterFromDB(chapterNumber : Int, completion: @escaping () -> () ){
         let db = Firestore.firestore()
@@ -88,14 +89,14 @@ class Story {
                         }
                 self.currentChapter.chapterText = "\(self.currentOption?.outcome ?? "")\(self.currentChapter.chapterText ?? "Failed to load text.")"
                 self.formatText()
-                self.path.append(self.currentChapter)                
+                self.path.append(self.currentChapter)
                 //When the chapter is set - Remove previous options and get new ones.
                 self.availableOptions.removeAll()
                 self.readOptionsFromDB (completion: completion)
             }
         }
     }
-    
+
     func readOptionsFromDB(completion: @escaping () -> () ){
         let db = Firestore.firestore()
         let optionsRef = db.collection("Options")
@@ -125,7 +126,7 @@ class Story {
                 }
         }
     }
-    
+
 //* Availability checks *//
     func checkAvailableChapter(chapter: Chapter) -> Bool {
         let chapter = chapter
@@ -139,7 +140,7 @@ class Story {
         // If the chapter doesn't have a required choice return true.
         else {return true}
     }
-    
+
     func checkAvailableOption(option: Option) -> Bool {
         let option = option
         // Check if the player has the required attribute value
