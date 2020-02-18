@@ -45,7 +45,7 @@ class Player {
     }
     
 //* Attribute getters and setters *//
-    func updateAttribute(attributeToUpdate: String, value: Int64){
+    func updateAttribute(attributeToUpdate: String, value: Int){
         for attribute in attributes{
             if attributeToUpdate == attribute.name {
                 attribute.updateValue(value: value)
@@ -53,7 +53,7 @@ class Player {
         }
     }
 
-    func checkAttribute(attributeToCheck: String) -> Int64{
+    func checkAttribute(attributeToCheck: String) -> Int{
         for attribute in attributes{
             if attributeToCheck == attribute.name {
                 return attribute.checkValue()
@@ -63,10 +63,7 @@ class Player {
     }
     
     func setAttribute(attributeName: String, attributeValue: Int) {
-        let attribute = Attribute(context: CoreDataHandler.context)
-        attribute.name = attributeName
-        attribute.value = Int64(attributeValue)
-        print(attribute)
+        let attribute = Attribute(name: attributeName, value: attributeValue)
         self.attributes.append(attribute)
         
     }

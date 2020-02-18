@@ -46,7 +46,7 @@ class Story {
 
         // Update the players attributes according to the chosen option.
         let attributeValue = choice.changedAttributeValue
-        player?.updateAttribute(attributeToUpdate: choice.changedAttribute ?? "", value: Int64(attributeValue ?? 0))
+        player?.updateAttribute(attributeToUpdate: choice.changedAttribute ?? "", value: attributeValue ?? 0)
 
         // With the attributes and choice in place - generate the next chapter.
         nextChapter(completion: completion)
