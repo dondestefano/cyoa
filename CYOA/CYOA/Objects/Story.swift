@@ -9,11 +9,10 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
-import CoreData
 
 class Story {
     var player : Player?
-    var path = [Chapter]()
+    var path : [Chapter] = []
     var availableOptions : [Option] = []
     var currentChapter : Chapter
     var currentOption : Option?
@@ -21,6 +20,7 @@ class Story {
 
     init(){
         currentChapter = Chapter(number: 0, text: "")
+        player = Player()
     }
 
     init(playerName: String){
@@ -39,10 +39,8 @@ class Story {
     func pathChosen(choice: Option, completion: @escaping () -> ()) {
         currentOption = choice
 
-        // If the option came with a vital choice append it.
-        if let vitalChoice = choice.vitalChoice{
-            player?.madeChoice(choice: vitalChoice)
-        }
+        // Add choice to the players choices.
+        player?.madeChoice(choice: choice)
 
         // Update the players attributes according to the chosen option.
         let attributeValue = choice.changedAttributeValue
@@ -54,6 +52,33 @@ class Story {
 
     func nextChapter(completion: @escaping () -> ()){
         self.readChapterFromDB(chapterNumber: currentChapter.chapterNumber, completion: completion)
+    }
+
+//* Database updaters *//
+    func addChapterToDB(chapter: Chapter) {
+        let db = Firestore.firestore()
+        if let user = Auth.auth().currentUser {
+        let attributeRef =  db.collection("users").document(user.uid).collection("path")
+        do {
+            try attributeRef.document().setData(from: chapter)
+                   print("chapter added")
+               } catch let error {
+                   print("Error writing: \(error)")
+            }
+        }
+    }
+    
+    func saveCurrentChapterToDB() {
+        let db = Firestore.firestore()
+        if let user = Auth.auth().currentUser {
+        let attributeRef =  db.collection("users").document(user.uid).collection("currentChapter")
+        do {
+            try attributeRef.document("chapter").setData(from: self.currentChapter)
+                   print("Chapter added")
+               } catch let error {
+                   print("Error writing: \(error)")
+            }
+        }
     }
 
 //* Database readers *//
@@ -89,7 +114,11 @@ class Story {
                         }
                 self.currentChapter.chapterText = "\(self.currentOption?.outcome ?? "")\(self.currentChapter.chapterText ?? "Failed to load text.")"
                 self.formatText()
-                self.path.append(self.currentChapter)
+                self.addChapterToDB(chapter: self.currentChapter)
+                
+                // Save the currentChapter in the database.
+                self.saveCurrentChapterToDB()
+                
                 //When the chapter is set - Remove previous options and get new ones.
                 self.availableOptions.removeAll()
                 self.readOptionsFromDB (completion: completion)
@@ -106,6 +135,7 @@ class Story {
             if let err = err {
                 print("Error getting documents: \(err)")
                 } else {
+                self.availableOptions.removeAll()
                     for document in querySnapshot!.documents {
                         let result = Result {
                             try document.data(as: Option.self)
@@ -114,7 +144,6 @@ class Story {
                             case.success(let option):
                                 if let option = option {
                                     if self.checkAvailableOption(option: option) {
-                                        print(option.name)
                                         self.availableOptions.append(option)
                                     }
                                 }
@@ -126,6 +155,61 @@ class Story {
                 }
         }
     }
+    
+    func readPathFromDB() {
+        let db = Firestore.firestore()
+        if let user = Auth.auth().currentUser {
+        let nameRef =  db.collection("users").document(user.uid).collection("path").order(by: "chapterNumber")
+            nameRef.addSnapshotListener() {
+                (snapshot, error) in
+                guard let documents = snapshot?.documents else {return}
+                
+                self.path.removeAll()
+                for document in documents {
+                    let result = Result {
+                        try document.data(as: Chapter.self)
+                    }
+                    
+                    switch result {
+                    case.success(let chapter):
+                        if let chapter = chapter {
+                            self.path.append(chapter)
+                        }
+                    case.failure(let error):
+                        print("Error decoding: \(error)")
+                    }
+
+                }
+            }
+        }
+    }
+    
+    func loadCurrentChapterfromDB() {
+        let db = Firestore.firestore()
+        if let user = Auth.auth().currentUser {
+            let chapterRef =  db.collection("users").document(user.uid).collection("currentChapter")
+            chapterRef.getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                    } else {
+                    for document in querySnapshot!.documents {
+                        let result = Result {
+                            try document.data(as: Chapter.self)
+                        }
+                    
+                    switch result {
+                        case.success(let chapter):
+                            if let chapter = chapter {
+                                self.currentChapter = chapter
+                        }
+                        case.failure(let error):
+                            print("Error decoding chapter: \(error)")
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 //* Availability checks *//
     func checkAvailableChapter(chapter: Chapter) -> Bool {
@@ -134,6 +218,7 @@ class Story {
         if let requiredChoice = chapter.requiredChoice {
             // Check if the player has made the required choice.
             if self.player?.checkForChoice(checkingForChoice: requiredChoice) ?? false{
+                print("\(requiredChoice)")
                 return true
             } else {return false}
         }

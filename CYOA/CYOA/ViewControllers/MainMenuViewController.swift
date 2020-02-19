@@ -12,6 +12,8 @@ import Firebase
 class MainMenuViewController: UIViewController {
     
     var myStory = Story()
+    var db: Firestore!
+    var auth: Auth!
     let storySegueID = "segueFromMainMenuToStory"
     let myStorySegueID = "segueFromMainMenuToMyStory"
     let newStorySegueID = "mainMenuToNewStorySegueID"
@@ -21,17 +23,18 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var newStoryButton: UIButton!
     
     @IBOutlet weak var myStoryButton: UIButton!
+    
     override func viewDidLoad() {
+        self.signIn()
+        self.myStory.loadCurrentChapterfromDB()
+        self.myStory.readPathFromDB()
+        self.myStory.player?.loadPlayerFromDB()
+        print(self.myStory.currentChapter.chapterNumber)
         super.viewDidLoad()
         
-        //Disable the continue button if no story has been started.
-        if self.myStory.currentChapter.chapterNumber == 0 {
-            continueButton.isUserInteractionEnabled = false
-            continueButton.alpha = 0.4
-        }
-
         // Do any additional setup after loading the view.
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         if self.myStory.currentChapter.chapterNumber != 0 {
@@ -52,7 +55,28 @@ class MainMenuViewController: UIViewController {
             
             let newStory = UIAlertAction(title: "Delete my story", style: .default) {
                     action in
-                self.myStory = Story(playerName: "")
+                let user = Auth.auth().currentUser
+                // Delete the current user from the database.
+                user?.delete { error in
+                  if let error = error {
+                    print("Encountered an error. \(error)")
+                  } else {
+                    print("Successfully deleted")
+                  }
+                }
+                
+                if let user = self.auth.currentUser {
+                    print(user.uid)
+                    do {
+                        try self.auth.signOut()
+                        } catch {
+                        print("Error signing out")
+                    }
+                 }
+                
+                // Sign in with a new anonymous user.
+                self.signIn()
+                
                 self.performSegue(withIdentifier: self.newStorySegueID, sender: Any?.self)
             }
                 
@@ -62,6 +86,19 @@ class MainMenuViewController: UIViewController {
             warning.addAction(newStory)
                 
             present(warning, animated: true)
+    }
+    
+    func signIn() {
+        auth = Auth.auth()
+        
+        if let user = self.auth.currentUser {
+            print(user.uid)
+         }
+            else {
+            print("got here")
+            auth.signInAnonymously() { (user, error) in
+            }
+        }
     }
     
 //* Segues *//

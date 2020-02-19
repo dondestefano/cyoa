@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Firebase
 
-class Attribute {
+class Attribute: Codable {
     
     public var name: String
     public var value: Int
@@ -25,4 +26,5 @@ class Attribute {
     func checkValue() -> Int {
         return self.value
     }
+    
 }

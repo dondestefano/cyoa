@@ -23,12 +23,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var choiceButton: UIButton!
     
     override func viewDidLoad() {
-        
+        // Read path and currentChapter from DB
+        self.myStory.readPathFromDB()
         // Load chapter one if the current chapter is zero.
         // Otherwise just refresh.
         if myStory.currentChapter.chapterNumber == 0 {
             self.myStory.nextChapter{ self.refresh() }
-        } else {refresh()}
+        } else {self.myStory.readOptionsFromDB {self.refresh()}}
+        
+        print("\(self.myStory.player?.choices.count)")
         
         super.viewDidLoad()
         optionsTableView.dataSource = self
@@ -48,7 +51,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        cell.selectionStyle = .none
         
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
