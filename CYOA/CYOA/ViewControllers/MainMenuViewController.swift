@@ -19,10 +19,10 @@ class MainMenuViewController: UIViewController {
     let newStorySegueID = "mainMenuToNewStorySegueID"
     
     @IBOutlet weak var continueButton: UIButton!
-    
     @IBOutlet weak var newStoryButton: UIButton!
-    
     @IBOutlet weak var myStoryButton: UIButton!
+    @IBOutlet weak var titleImage: UIImageView!
+    
     
     override func viewDidLoad() {
         self.signIn()

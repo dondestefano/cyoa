@@ -31,8 +31,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.myStory.nextChapter{ self.refresh() }
         } else {self.myStory.readOptionsFromDB {self.refresh()}}
         
-        print("\(self.myStory.player?.choices.count)")
-        
         super.viewDidLoad()
         optionsTableView.dataSource = self
         optionsTableView.delegate = self
