@@ -65,7 +65,6 @@ class Player {
         }
     }
 
-
     func checkAttribute(attributeToCheck: String) -> Int{
         for attribute in attributes{
             if attributeToCheck == attribute.name {

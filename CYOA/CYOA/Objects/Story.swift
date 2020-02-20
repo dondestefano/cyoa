@@ -54,8 +54,8 @@ class Story {
         self.readChapterFromDB(chapterNumber: currentChapter.chapterNumber, completion: completion)
     }
 
-//* Database updaters *//
-    func addChapterToDB(chapter: Chapter) {
+//* Database savers *//
+    func saveChapterToDB(chapter: Chapter) {
         let db = Firestore.firestore()
         if let user = Auth.auth().currentUser {
         let attributeRef =  db.collection("users").document(user.uid).collection("path")
@@ -114,7 +114,7 @@ class Story {
                         }
                 self.currentChapter.chapterText = "\(self.currentOption?.outcome ?? "")\(self.currentChapter.chapterText ?? "Failed to load text.")"
                 self.formatText()
-                self.addChapterToDB(chapter: self.currentChapter)
+                self.saveChapterToDB(chapter: self.currentChapter)
                 
                 // Save the currentChapter in the database.
                 self.saveCurrentChapterToDB()
@@ -184,7 +184,7 @@ class Story {
         }
     }
     
-    func loadCurrentChapterfromDB() {
+    func loadCurrentChapterfromDB(completion: @escaping () -> () ) {
         let db = Firestore.firestore()
         if let user = Auth.auth().currentUser {
             let chapterRef =  db.collection("users").document(user.uid).collection("currentChapter")
@@ -201,6 +201,7 @@ class Story {
                         case.success(let chapter):
                             if let chapter = chapter {
                                 self.currentChapter = chapter
+                                completion()
                         }
                         case.failure(let error):
                             print("Error decoding chapter: \(error)")

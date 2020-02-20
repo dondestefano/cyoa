@@ -19,9 +19,9 @@ class Attribute: Codable {
         self.value = value
     }
     
-    func updateValue(value: Int){
-        self.value += value
-    }
+//    func updateValue(value: Int){
+//        self.value += value
+//    }
     
     func checkValue() -> Int {
         return self.value

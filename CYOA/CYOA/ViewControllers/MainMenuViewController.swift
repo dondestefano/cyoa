@@ -26,7 +26,7 @@ class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         self.signIn()
-        self.myStory.loadCurrentChapterfromDB()
+        self.myStory.loadCurrentChapterfromDB {self.checkContinue()}
         self.myStory.readPathFromDB()
         self.myStory.player?.loadPlayerFromDB()
         print(self.myStory.currentChapter.chapterNumber)
@@ -37,10 +37,7 @@ class MainMenuViewController: UIViewController {
 
     
     override func viewDidAppear(_ animated: Bool) {
-        if self.myStory.currentChapter.chapterNumber != 0 {
-            continueButton.isUserInteractionEnabled = true
-            continueButton.alpha = 1
-        }
+        self.checkContinue()
     }
     
     @IBAction func newStory(_ sender: Any) {
@@ -98,6 +95,19 @@ class MainMenuViewController: UIViewController {
             print("got here")
             auth.signInAnonymously() { (user, error) in
             }
+        }
+    }
+
+//* Animations *//
+    func checkContinue() {
+        // If current chapter has a number - show continue.
+        if self.myStory.currentChapter.chapterNumber != 0 {
+            continueButton.isUserInteractionEnabled = true
+            continueButton.alpha = 1
+        } else {
+            // If current chapter doesn't have a chapter - hide continue.
+            continueButton.isUserInteractionEnabled = false
+            continueButton.alpha = 0.4
         }
     }
     
