@@ -12,37 +12,38 @@ import Firebase
 class MainMenuViewController: UIViewController {
     
     var myStory = Story()
+    var db: Firestore!
+    var auth: Auth!
     let storySegueID = "segueFromMainMenuToStory"
     let myStorySegueID = "segueFromMainMenuToMyStory"
     let newStorySegueID = "mainMenuToNewStorySegueID"
+    let warningScreenID = "segueToWarningScreen"
     
     @IBOutlet weak var continueButton: UIButton!
-    
     @IBOutlet weak var newStoryButton: UIButton!
-    
     @IBOutlet weak var myStoryButton: UIButton!
+    @IBOutlet weak var titleImage: UIImageView!
+    
+    
     override func viewDidLoad() {
+        self.signIn()
+        self.myStory.loadCurrentChapterfromDB {self.checkContinue()}
+        self.myStory.readPathFromDB()
+        self.myStory.player?.loadPlayerFromDB()
+        print(self.myStory.currentChapter.chapterNumber)
         super.viewDidLoad()
         
-        //Disable the continue button if no story has been started.
-        if self.myStory.currentChapter.chapterNumber == 0 {
-            continueButton.isUserInteractionEnabled = false
-            continueButton.alpha = 0.4
-        }
-
         // Do any additional setup after loading the view.
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
-        if self.myStory.currentChapter.chapterNumber != 0 {
-            continueButton.isUserInteractionEnabled = true
-            continueButton.alpha = 1
-        }
+        self.checkContinue()
     }
     
     @IBAction func newStory(_ sender: Any) {
         if self.myStory.currentChapter.chapterNumber == 0 {
-            performSegue(withIdentifier: newStorySegueID, sender: (Any).self)
+            performSegue(withIdentifier: warningScreenID, sender: (Any).self)
         } else { deleteStoryWarning() }
         
     }
@@ -52,8 +53,37 @@ class MainMenuViewController: UIViewController {
             
             let newStory = UIAlertAction(title: "Delete my story", style: .default) {
                     action in
-                self.myStory = Story(playerName: "")
-                self.performSegue(withIdentifier: self.newStorySegueID, sender: Any?.self)
+                let user = Auth.auth().currentUser
+                let db = Firestore.firestore()
+                // Mark the user as deleted
+                if let user = user {
+                    let docRef =  db.collection("users").document(user.uid)
+                    docRef.setData(["delete" : true])
+                    print("added")
+                }
+
+                // Delete the current user from the database.
+                user?.delete { error in
+                  if let error = error {
+                    print("Encountered an error. \(error)")
+                  } else {
+                    print("Successfully deleted")
+                  }
+                }
+                
+                if let user = self.auth.currentUser {
+                    print(user.uid)
+                    do {
+                        try self.auth.signOut()
+                        } catch {
+                        print("Error signing out")
+                    }
+                 }
+                
+                // Sign in with a new anonymous user.
+                self.signIn()
+                
+                self.performSegue(withIdentifier: self.warningScreenID, sender: Any?.self)
             }
                 
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -62,6 +92,32 @@ class MainMenuViewController: UIViewController {
             warning.addAction(newStory)
                 
             present(warning, animated: true)
+    }
+    
+    func signIn() {
+        auth = Auth.auth()
+        
+        if let user = self.auth.currentUser {
+            print(user.uid)
+         }
+            else {
+            print("got here")
+            auth.signInAnonymously() { (user, error) in
+            }
+        }
+    }
+
+//* Animations *//
+    func checkContinue() {
+        // If current chapter has a number - show continue.
+        if self.myStory.currentChapter.chapterNumber != 0 {
+            continueButton.isUserInteractionEnabled = true
+            continueButton.alpha = 1
+        } else {
+            // If current chapter doesn't have a chapter - hide continue.
+            continueButton.isUserInteractionEnabled = false
+            continueButton.alpha = 0.4
+        }
     }
     
 //* Segues *//

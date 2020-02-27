@@ -52,11 +52,10 @@ class PopUpMenuViewController: UIViewController {
     func removeAnimation() {
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.view.alpha = 0
-        }, completion:{(finished : Bool) in
-            if finished{
-                self.view.removeFromSuperview()
-            }
+            self.view.alpha = 0}, completion:{(finished : Bool) in
+                if finished {
+                    self.view.removeFromSuperview()
+                }
         })
     }
 }
