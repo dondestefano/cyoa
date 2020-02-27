@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import Firebase;
+import Firebase
+import AVFoundation
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
     var myStory = Story()
     var currentOption : Option?
+    let audio = AudioPlayer()
     let optionID = "optionsCellID"
     let myStorySegueID = "segueToMyStory"
     
@@ -109,6 +111,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func revealNextChapter(finished: Bool){
+        audio.playSound(sound: "new_page.mp3")
         updateChapterLabel()
         updateStoryText()
         UIView.animate(withDuration: 1.5, animations: {self.storyText.alpha = 1.0})
