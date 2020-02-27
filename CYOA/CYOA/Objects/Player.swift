@@ -22,10 +22,9 @@ class Player {
     init(name: String) {
         self.name = name
         self.setName(name: name)
-        self.setAttribute(attributeName: "Heroic", attributeValue: 0)
-        self.setAttribute(attributeName: "Agressive", attributeValue: 0)
-        self.setAttribute(attributeName: "Charismatic", attributeValue: 0)
-        self.setAttribute(attributeName: "Lucky", attributeValue: 5)
+        self.setAttribute(attributeName: "Fear", attributeValue: 0)
+        self.setAttribute(attributeName: "Reason", attributeValue: 0)
+        self.setAttribute(attributeName: "Evil", attributeValue: 0)
         self.readFromDB(collectionPath: "attributes", playerArray: "attributes", type: "Attribute")
         self.readFromDB(collectionPath: "choices", playerArray: "choices", type: "Option")
     }
@@ -72,6 +71,15 @@ class Player {
             }
         }
         return 0
+    }
+    
+    func checkIfReasonIsStrongerThanFear() -> Bool{
+        let fear = self.checkAttribute(attributeToCheck: "Fear")
+        let reason = self.checkAttribute(attributeToCheck: "Reason")
+        if reason >= fear {
+            return true
+        }
+        return false
     }
     
     func setName(name: String) {

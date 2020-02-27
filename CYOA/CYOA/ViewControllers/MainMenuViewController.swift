@@ -17,6 +17,7 @@ class MainMenuViewController: UIViewController {
     let storySegueID = "segueFromMainMenuToStory"
     let myStorySegueID = "segueFromMainMenuToMyStory"
     let newStorySegueID = "mainMenuToNewStorySegueID"
+    let warningScreenID = "segueToWarningScreen"
     
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var newStoryButton: UIButton!
@@ -42,7 +43,7 @@ class MainMenuViewController: UIViewController {
     
     @IBAction func newStory(_ sender: Any) {
         if self.myStory.currentChapter.chapterNumber == 0 {
-            performSegue(withIdentifier: newStorySegueID, sender: (Any).self)
+            performSegue(withIdentifier: warningScreenID, sender: (Any).self)
         } else { deleteStoryWarning() }
         
     }
@@ -53,6 +54,14 @@ class MainMenuViewController: UIViewController {
             let newStory = UIAlertAction(title: "Delete my story", style: .default) {
                     action in
                 let user = Auth.auth().currentUser
+                let db = Firestore.firestore()
+                // Mark the user as deleted
+                if let user = user {
+                    let docRef =  db.collection("users").document(user.uid)
+                    docRef.setData(["delete" : true])
+                    print("added")
+                }
+
                 // Delete the current user from the database.
                 user?.delete { error in
                   if let error = error {
@@ -74,7 +83,7 @@ class MainMenuViewController: UIViewController {
                 // Sign in with a new anonymous user.
                 self.signIn()
                 
-                self.performSegue(withIdentifier: self.newStorySegueID, sender: Any?.self)
+                self.performSegue(withIdentifier: self.warningScreenID, sender: Any?.self)
             }
                 
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

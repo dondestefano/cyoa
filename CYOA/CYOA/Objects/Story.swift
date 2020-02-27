@@ -51,7 +51,34 @@ class Story {
     }
 
     func nextChapter(completion: @escaping () -> ()){
-        self.readChapterFromDB(chapterNumber: currentChapter.chapterNumber, completion: completion)
+        // Check if the player made a story ending choice
+        if currentOption?.vitalChoice == "YouMonster"{
+            self.readLastChapterFromDB(chapterName: "Horrible", completion: completion)
+        }
+        else if currentOption?.vitalChoice == "FreeHer"{
+            if ((self.player?.checkIfReasonIsStrongerThanFear) != nil) {
+                self.readLastChapterFromDB(chapterName: "TrueEnding", completion: completion)
+            } else {
+                // If no story ending choice was made, load the next chapter in order.
+                self.readLastChapterFromDB(chapterName: "SoClose", completion: completion)
+            }
+        }
+        else if currentOption?.vitalChoice == "BurnHer"{
+            if ((self.player?.checkIfReasonIsStrongerThanFear) != nil) {
+                self.readLastChapterFromDB(chapterName: "BurnWithReason", completion: completion)
+            } else {
+                self.readLastChapterFromDB(chapterName: "BurnWithFear", completion: completion)
+            }
+        }
+        else {
+            self.readChapterFromDB(chapterNumber: currentChapter.chapterNumber, completion: completion)
+        }
+    }
+    
+    func checkEnding(completion: @escaping () -> ()){
+        if currentOption?.vitalChoice == "YouMonster"{
+            
+        }
     }
 
 //* Database savers *//
@@ -61,7 +88,6 @@ class Story {
         let attributeRef =  db.collection("users").document(user.uid).collection("path")
         do {
             try attributeRef.document().setData(from: chapter)
-                   print("chapter added")
                } catch let error {
                    print("Error writing: \(error)")
             }
@@ -74,7 +100,6 @@ class Story {
         let attributeRef =  db.collection("users").document(user.uid).collection("currentChapter")
         do {
             try attributeRef.document("chapter").setData(from: self.currentChapter)
-                   print("Chapter added")
                } catch let error {
                    print("Error writing: \(error)")
             }
@@ -85,33 +110,33 @@ class Story {
     func readChapterFromDB(chapterNumber : Int, completion: @escaping () -> () ){
         let db = Firestore.firestore()
         let chapterRef = db.collection("chapters")
+        // Get all chapters with the correct previous chapter.
         chapterRef.whereField("previousChapter", in: [currentChapter.chapterNumber])
         .getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
                 } else {
-                    for document in querySnapshot!.documents {
-                        let result = Result {
-                            try document.data(as: Chapter.self)
-                        }
-
-                        switch result {
-                            case.success(let chapter):
-                                if let chapter = chapter {
-                                    // Check if the chapter is available.
-                                    if self.checkAvailableChapter(chapter: chapter){
-                                        // If there are more than one compatible chapters
-                                        // determine which chapter to choose.
-                                        if self.currentChapter.requiredChoice != nil && self.currentChapter.chapterNumber != chapterNumber {
-                                            break
-                                        }
-                                        else {self.currentChapter = chapter}
+                for document in querySnapshot!.documents {
+                    let result = Result {
+                        try document.data(as: Chapter.self)
+                    }
+                    switch result {
+                        case.success(let chapter):
+                            if let chapter = chapter {
+                                // Check if the chapter is available.
+                                if self.checkAvailableChapter(chapter: chapter){
+                                    // If there are more than one compatible chapters
+                                    // determine which chapter to choose.
+                                    if self.currentChapter.requiredChoice != nil && self.currentChapter.chapterNumber != chapterNumber {
+                                        break
                                     }
+                                    else {self.currentChapter = chapter}
                                 }
-                            case.failure(let error):
-                                print("Error decoding chapter: \(error)")
                             }
-                        }
+                        case.failure(let error):
+                            print("Error decoding chapter: \(error)")
+                    }
+                }
                 self.currentChapter.chapterText = "\(self.currentOption?.outcome ?? "")\(self.currentChapter.chapterText ?? "Failed to load text.")"
                 self.formatText()
                 self.saveChapterToDB(chapter: self.currentChapter)
@@ -156,6 +181,35 @@ class Story {
         }
     }
     
+    func readLastChapterFromDB(chapterName: String, completion: @escaping () -> () ){
+        let db = Firestore.firestore()
+        let textRef = db.collection("chapters")
+        // Get the last chapter with the correct ID.
+        textRef.document(chapterName).getDocument(){ (document , error) in
+            if let document = document, document.exists {
+                let result = Result {
+                    try document.data(as: Chapter.self)
+                }
+                switch result {
+                    case.success(let chapter):
+                        if let chapter = chapter {
+                            self.currentChapter = chapter
+                        }
+                    case.failure(let error):
+                        print("Error decoding chapter: \(error)")
+                }
+                self.currentChapter.chapterText = "\(self.currentOption?.outcome ?? "")\(self.currentChapter.chapterText ?? "Failed to load text.")"
+                self.formatText()
+                self.saveChapterToDB(chapter: self.currentChapter)
+                
+                // Save the currentChapter in the database.
+                self.saveCurrentChapterToDB()
+                self.availableOptions.removeAll()
+                completion()
+            }
+        }
+    }
+    
     func readPathFromDB() {
         let db = Firestore.firestore()
         if let user = Auth.auth().currentUser {
@@ -183,6 +237,8 @@ class Story {
             }
         }
     }
+    
+    
     
     func loadCurrentChapterfromDB(completion: @escaping () -> () ) {
         let db = Firestore.firestore()

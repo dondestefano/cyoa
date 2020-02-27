@@ -19,7 +19,7 @@ class NewStoryViewController: UIViewController {
     @IBOutlet weak var newStoryTextLabel: UILabel!
     
     override func viewDidLoad() {
-        newStoryTextLabel.text = "Welcome to the new story.\n\nPlease enter your name"
+        newStoryTextLabel.text = "The year is 1692. Amidst the horrible witch-trials that stalks the land you are an interrogator, tasked with hearing the confessions of those accused of being a witch. Your job is to interview and deem whether the accused is a witch and should be sent to the pyre or if she is innocent and should be spared.\n\nThis story starts as you arrive at the village of Whistlebrooke where the village elders has sent for you. The villagers have managed to capture and hold an alleged witch and are eagerly waiting for you to confirm what they already know. With nothing but your trusted notebook in hand you head for the old mine that the village now use as a temporary jail cell for witches."
         super.viewDidLoad()
         
 

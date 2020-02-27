@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "aw.png",
+      "filename" : "aw_dark.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "aw_dark.png",
+      "filename" : "aw.png",
       "appearances" : [
         {
           "appearance" : "luminosity",

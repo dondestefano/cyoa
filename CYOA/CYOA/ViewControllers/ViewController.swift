@@ -34,6 +34,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         optionsTableView.dataSource = self
         optionsTableView.delegate = self
+        optionsTableView.backgroundColor = .clear
         // Do any additional setup after loading the view
     }
 
@@ -46,7 +47,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: optionID, for: indexPath)
         let option = myStory.availableOptions[indexPath.row]
         cell.textLabel?.text = option.name
-//        cell.selectionStyle = .none
+        if option.vitalChoice == "YouMonster" || option.vitalChoice == "FreeHer" || option.vitalChoice == "BurnHer" {
+            cell.textLabel?.textColor = .red
+        }
         
         return cell
     }
@@ -56,8 +59,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         currentOption = option
         choiceButton.isUserInteractionEnabled = true
         choiceButton.alpha = 1
-//        let cell  = tableView.cellForRow(at: indexPath)
-//        cell?.contentView.backgroundColor = .red
     }
     
 
@@ -85,9 +86,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func refresh() {
         hideStoryText()
+        // Reset current option
         currentOption = nil
+        // Disable the choice button
         choiceButton.isUserInteractionEnabled = false
         choiceButton.alpha = 0.4
+        // Scroll the text back to the top
+        storyText.setContentOffset(.zero, animated: true)
     }
     
 //* Actions *//
@@ -99,6 +104,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
 //* Animations *//
     func hideStoryText(){
+        // Hide the storys text and load the reveal function.
         UIView.animate(withDuration: 0.5, animations: {self.storyText.alpha = 0.0}, completion: revealNextChapter(finished:))
     }
     
