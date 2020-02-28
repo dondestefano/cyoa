@@ -53,14 +53,10 @@ class Player {
     
 //* Attribute getters and setters *//
     func updateAttribute(attributeToUpdate: String, value: Int){
-        var currentValue = self.checkAttribute(attributeToCheck: attributeToUpdate)
-        currentValue += value
-        let db = Firestore.firestore()
-        if let user = Auth.auth().currentUser {
-        let attributeRef =  db.collection("users").document(user.uid).collection("attributes")
-            attributeRef.document(attributeToUpdate).updateData([
-                "value": currentValue
-            ])
+        for attribute in attributes {
+            if attribute.name == attributeToUpdate{
+                attribute.updateValue(value: value)
+            }
         }
     }
 

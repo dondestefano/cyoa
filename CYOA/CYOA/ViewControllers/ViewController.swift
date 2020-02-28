@@ -63,14 +63,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         choiceButton.alpha = 1
     }
     
-
-
-//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        let cell  = tableView.cellForRow(at: indexPath)
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        cell?.contentView.backgroundColor = .clear
-//    }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.alpha = 0
         UIView.animate(withDuration: 2, delay: 0.8 * Double(indexPath.row), animations: {cell.alpha = 1})
