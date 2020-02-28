@@ -2,7 +2,7 @@
 //  PopUpMenuViewController.swift
 //  CYOA
 //
-//  Created by Luigi Anonymus on 2020-02-16.
+//  Created by Michael De Stefano on 2020-02-16.
 //  Copyright © 2020 Michael De Stefano. All rights reserved.
 //
 
@@ -31,7 +31,8 @@ class PopUpMenuViewController: UIViewController {
         self.removeAnimation()
         parent?.performSegue(withIdentifier: "unwindSegue", sender: Any?.self)
     }
-    // Close the pop-up if the user presses anything but the buttons.
+    
+    // Close the pop-up if the user presses anything but a buttons.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let _: UITouch? = touches.first
         self.willMove(toParent: nil)

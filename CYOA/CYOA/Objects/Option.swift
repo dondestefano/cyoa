@@ -2,7 +2,7 @@
 //  Option.swift
 //  CYOA
 //
-//  Created by Luigi Anonymus on 2020-01-30.
+//  Created by Michael De Stefano on 2020-01-30.
 //  Copyright © 2020 Michael De Stefano. All rights reserved.
 //
 

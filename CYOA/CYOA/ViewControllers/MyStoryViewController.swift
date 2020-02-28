@@ -2,7 +2,7 @@
 //  MyStoryViewController.swift
 //  CYOA
 //
-//  Created by Luigi Anonymus on 2020-02-03.
+//  Created by Michael De Stefano on 2020-02-03.
 //  Copyright © 2020 Michael De Stefano. All rights reserved.
 //
 
@@ -38,7 +38,5 @@ class MyStoryViewController: UIViewController, UITableViewDataSource, UITableVie
         myStoryTableView.register(nib, forCellReuseIdentifier: storyCellID)
         
         myStoryTableView.dataSource = self
-
-        // Do any additional setup after loading the view.
     }
 }

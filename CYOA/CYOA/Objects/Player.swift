@@ -2,7 +2,7 @@
 //  Player.swift
 //  CYOA
 //
-//  Created by Luigi Anonymus on 2020-01-29.
+//  Created by Michael De Stefano on 2020-01-29.
 //  Copyright © 2020 Michael De Stefano. All rights reserved.
 //
 
@@ -32,17 +32,17 @@ class Player {
     func madeChoice(choice: Option){
         let db = Firestore.firestore()
         if let user = Auth.auth().currentUser {
-        let attributeRef =  db.collection("users").document(user.uid).collection("choices")
+        let choiceRef =  db.collection("users").document(user.uid).collection("choices")
         do {
-            try attributeRef.document().setData(from: choice)
+            try choiceRef.document().setData(from: choice)
                } catch let error {
                    print("Error writing: \(error)")
             }
         }
     }
     
-    // See what vital choices the player has made
     func checkForChoice(checkingForChoice: String) -> Bool{
+        // See if the player has made a specific vital choice
         for choice in choices {
             if checkingForChoice == choice.vitalChoice {
                 return true
@@ -82,13 +82,13 @@ class Player {
         let name = name
         let db = Firestore.firestore()
         if let user = Auth.auth().currentUser {
-            let nameeRef =  db.collection("users").document(user.uid).collection("name")
-            nameeRef.addDocument(data: ["name" : name])
+            let nameRef =  db.collection("users").document(user.uid).collection("name")
+            nameRef.addDocument(data: ["name" : name])
         }
     }
     
-    // Add the players attributes with custom ID's to the users database
     func setAttribute(attributeName: String, attributeValue: Int) {
+        // Add the players attributes with custom ID's to the users databas
         let attribute = Attribute(name: attributeName, value: attributeValue)
         let db = Firestore.firestore()
         if let user = Auth.auth().currentUser {
@@ -135,7 +135,7 @@ class Player {
                         }
                     }
                 }
-                    // If the type is Attribute read the players attributes.
+                // If the type is Attribute read the players attributes.
                 else if type == "Attribute" {
                     self.attributes.removeAll()
                     for document in documents {

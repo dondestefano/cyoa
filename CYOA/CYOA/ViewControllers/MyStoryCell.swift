@@ -2,7 +2,7 @@
 //  MyStoryCell.swift
 //  CYOA
 //
-//  Created by Luigi Anonymus on 2020-02-03.
+//  Created by Michael De Stefano on 2020-02-03.
 //  Copyright © 2020 Michael De Stefano. All rights reserved.
 //
 
@@ -16,13 +16,10 @@ class MyStoryCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }
