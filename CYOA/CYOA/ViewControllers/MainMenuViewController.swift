@@ -67,7 +67,7 @@ class MainMenuViewController: UIViewController {
                   }
                 }
                 
-                if let user = self.auth.currentUser {
+                if self.auth.currentUser != nil {
                     do {
                         try self.auth.signOut()
                         } catch {
@@ -92,7 +92,7 @@ class MainMenuViewController: UIViewController {
     func signIn() {
         auth = Auth.auth()
         
-        if let user = self.auth.currentUser {
+        if self.auth.currentUser != nil {
          }
             else {
             auth.signInAnonymously() { (user, error) in
