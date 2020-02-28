@@ -147,7 +147,6 @@ class Player {
                             case.success(let attribute):
                                 if let attribute = attribute {
                                 self.attributes.append(attribute)
-                                    print("\(attribute.name) \(attribute.value)")
                                 }
                             case.failure(let error):
                                 print("Error decoding: \(error)")
