@@ -33,5 +33,4 @@ class Attribute: Codable {
     func checkValue() -> Int {
         return self.value
     }
-    
 }

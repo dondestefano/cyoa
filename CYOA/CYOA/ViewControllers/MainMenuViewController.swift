@@ -128,7 +128,7 @@ class MainMenuViewController: UIViewController {
         }
         
         else if segue.identifier == storySegueID {
-            let destinationVC = segue.destination as! ViewController
+            let destinationVC = segue.destination as! StoryViewController
             destinationVC.myStory = myStory
         }
         
@@ -139,8 +139,8 @@ class MainMenuViewController: UIViewController {
     }
     
     @IBAction func unwindToRootViewController(segue: UIStoryboardSegue) {
-        if segue.source is ViewController {
-            if let senderVC = segue.source as? ViewController{
+        if segue.source is StoryViewController {
+            if let senderVC = segue.source as? StoryViewController{
                 myStory = senderVC.myStory
             }
         }

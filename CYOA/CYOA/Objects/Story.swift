@@ -125,8 +125,7 @@ class Story {
                             if let chapter = chapter {
                                 // Check if the chapter is available.
                                 if self.checkAvailableChapter(chapter: chapter){
-                                    // If there are more than one compatible chapters
-                                    // determine which chapter to choose.
+                                    // If there are more than one compatible chapters - determine which chapter to choose depedning on vital choices.
                                     if self.currentChapter.requiredChoice != nil && self.currentChapter.chapterNumber != chapterNumber {
                                         break
                                     }

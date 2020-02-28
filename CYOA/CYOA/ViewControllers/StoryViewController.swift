@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  StoryViewController.swift
 //  CYOA
 //
 //  Created by Luigi Anonymus on 2020-01-25.
@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import AVFoundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class StoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
     var myStory = Story()
     var currentOption : Option?

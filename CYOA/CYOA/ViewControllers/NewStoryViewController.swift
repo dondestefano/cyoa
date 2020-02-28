@@ -57,7 +57,7 @@ class NewStoryViewController: UIViewController {
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == storySegueID {
-            let destinationVC = segue.destination as! ViewController
+            let destinationVC = segue.destination as! StoryViewController
             destinationVC.myStory = newStory
         }
     }
