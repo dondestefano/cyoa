@@ -30,7 +30,6 @@ class MainMenuViewController: UIViewController {
         self.myStory.loadCurrentChapterfromDB {self.checkContinue()}
         self.myStory.readPathFromDB()
         self.myStory.player?.loadPlayerFromDB()
-        print(self.myStory.currentChapter.chapterNumber)
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
@@ -59,7 +58,6 @@ class MainMenuViewController: UIViewController {
                 if let user = user {
                     let docRef =  db.collection("users").document(user.uid)
                     docRef.setData(["delete" : true])
-                    print("added")
                 }
 
                 // Delete the current user from the database.
@@ -67,12 +65,10 @@ class MainMenuViewController: UIViewController {
                   if let error = error {
                     print("Encountered an error. \(error)")
                   } else {
-                    print("Successfully deleted")
                   }
                 }
                 
                 if let user = self.auth.currentUser {
-                    print(user.uid)
                     do {
                         try self.auth.signOut()
                         } catch {
@@ -98,10 +94,8 @@ class MainMenuViewController: UIViewController {
         auth = Auth.auth()
         
         if let user = self.auth.currentUser {
-            print(user.uid)
          }
             else {
-            print("got here")
             auth.signInAnonymously() { (user, error) in
             }
         }
@@ -128,7 +122,7 @@ class MainMenuViewController: UIViewController {
         }
         
         else if segue.identifier == storySegueID {
-            let destinationVC = segue.destination as! ViewController
+            let destinationVC = segue.destination as! StoryViewController
             destinationVC.myStory = myStory
         }
         
@@ -139,8 +133,8 @@ class MainMenuViewController: UIViewController {
     }
     
     @IBAction func unwindToRootViewController(segue: UIStoryboardSegue) {
-        if segue.source is ViewController {
-            if let senderVC = segue.source as? ViewController{
+        if segue.source is StoryViewController {
+            if let senderVC = segue.source as? StoryViewController{
                 myStory = senderVC.myStory
             }
         }

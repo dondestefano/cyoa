@@ -19,12 +19,18 @@ class Attribute: Codable {
         self.value = value
     }
     
-//    func updateValue(value: Int){
-//        self.value += value
-//    }
+    func updateValue(value: Int){
+        self.value += value
+        let db = Firestore.firestore()
+        if let user = Auth.auth().currentUser {
+        let attributeRef =  db.collection("users").document(user.uid).collection("attributes")
+            attributeRef.document(self.name).updateData([
+                "value": self.value
+            ])
+        }
+    }
     
     func checkValue() -> Int {
         return self.value
     }
-    
 }

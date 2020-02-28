@@ -30,7 +30,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="Continue">
                                             <attributes>
-                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="NSColor" red="1" green="0.22137647867202759" blue="0.14142847061157227" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="35" name="Helvetica"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
@@ -206,10 +206,10 @@
             </objects>
             <point key="canvasLocation" x="928" y="112"/>
         </scene>
-        <!--View Controller-->
+        <!--Story View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CYOA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="StoryViewController" customModule="CYOA" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,7 +218,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4qh-1c-fpy">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qh-1c-fpy">
                                 <rect key="frame" x="20" y="114.00000000000003" width="374" height="499.66666666666674"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
@@ -283,14 +283,7 @@
                                     <action selector="makeChoice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HoR-fP-p92"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZkY-01-JK5">
-                                <rect key="frame" x="348" y="37" width="46" height="40"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="uWy-Gx-TMv" kind="presentation" identifier="segueToMyStory" id="w34-Qb-686"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcO-Of-lZb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcO-Of-lZb">
                                 <rect key="frame" x="32" y="795" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="FCX-0B-eYn"/>
@@ -299,6 +292,10 @@
                                 <state key="normal" title="Menu" image="menu_icon">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="1" scale="small"/>
                                 </state>
+                                <state key="selected" image="menu_icon">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="10" scale="small" weight="thin"/>
+                                </state>
+                                <state key="highlighted" image="menu_icon"/>
                                 <connections>
                                     <action selector="showPopUpMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zQK-QO-RhE"/>
                                 </connections>
@@ -308,11 +305,8 @@
                         <constraints>
                             <constraint firstItem="4qh-1c-fpy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="0sJ-9j-mIb"/>
                             <constraint firstItem="hO9-hb-JAk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="2ko-r5-HdC"/>
-                            <constraint firstItem="4qh-1c-fpy" firstAttribute="top" secondItem="ZkY-01-JK5" secondAttribute="bottom" constant="37" id="8B5-XH-2L0"/>
                             <constraint firstItem="Sxb-90-m40" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8LW-wz-Gxt"/>
-                            <constraint firstItem="ZkY-01-JK5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="348" id="8MT-7M-X3J"/>
                             <constraint firstItem="Sxb-90-m40" firstAttribute="top" secondItem="4qh-1c-fpy" secondAttribute="bottom" constant="19" id="8kl-BN-o7D"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZkY-01-JK5" secondAttribute="trailing" constant="20" id="Amx-Hp-bw2"/>
                             <constraint firstItem="4qh-1c-fpy" firstAttribute="top" secondItem="hO9-hb-JAk" secondAttribute="bottom" constant="8" id="B5p-iS-JwU"/>
                             <constraint firstItem="c0t-Ws-XzE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DWs-M9-hVC"/>
                             <constraint firstItem="c0t-Ws-XzE" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Gwj-du-Ddd"/>
@@ -328,7 +322,6 @@
                             <constraint firstItem="hcO-Of-lZb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="kgH-fo-uS4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VsY-Zq-TJk" secondAttribute="bottom" constant="29" id="rgt-jv-L4A"/>
                             <constraint firstItem="4qh-1c-fpy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wch-Qn-dCu"/>
-                            <constraint firstItem="ZkY-01-JK5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="37" id="wo0-8s-Xq2"/>
                             <constraint firstAttribute="bottom" secondItem="c0t-Ws-XzE" secondAttribute="bottom" id="x7w-Gg-432"/>
                             <constraint firstItem="c0t-Ws-XzE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="zMd-oC-yNy"/>
                         </constraints>
@@ -341,6 +334,7 @@
                         <outlet property="optionsTableView" destination="Sxb-90-m40" id="LRk-6X-Gd0"/>
                         <outlet property="storyText" destination="4qh-1c-fpy" id="uDD-Qd-dbp"/>
                         <segue destination="a21-39-ZaN" kind="unwind" identifier="unwindSegue" unwindAction="unwindToRootViewControllerWithSegue:" id="cTE-w2-0Er"/>
+                        <segue destination="uWy-Gx-TMv" kind="presentation" identifier="segueToMyStory" id="Fsh-Xe-yQE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -507,9 +501,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="340.5" id="m6G-aR-lHl"/>
                                 </constraints>
-                                <string key="text">The Burning of Agatha Wood is a fictional horror story filled with suggested themes and vivid descriptions. It is not for everyone and should be read at your own risk. The story will force you to make decisions that might make you uncomfortable and should you continue, be aware that you should stop if you feel that the story is headed outward of your comfort zone.
+                                <mutableString key="text">The Burning of Agatha Wood is a fictional horror story filled with suggested themes and vivid descriptions. It is not for everyone and should be read at your own risk. The story will force you to make decisions that might make you uncomfortable and should you continue, be aware that you should stop if you feel that the story is headed out of your comfort zone.
 
-If you know yourself to be frightened or disturbed by the following themes I strongly recommend that you do not continue: Blood, Murder, Violence, Mental Illness, Suicide, Sexism, Witches, Demons.</string>
+If you know yourself to be frightened or disturbed by the following themes I strongly recommend that you do not continue: Blood, Murder, Violence, Mental Illness, Suicide, Sexism, Witches, Demons.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -578,8 +572,8 @@ If you know yourself to be frightened or disturbed by the following themes I str
         <image name="page" width="1920" height="1920"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="T9L-A2-rPI"/>
-        <segue reference="rVy-mf-oSx"/>
+        <segue reference="Fsh-Xe-yQE"/>
+        <segue reference="Ze7-87-VDG"/>
         <segue reference="r1y-bO-cL7"/>
     </inferredMetricsTieBreakers>
 </document>

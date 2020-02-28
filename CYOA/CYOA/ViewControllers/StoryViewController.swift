@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  StoryViewController.swift
 //  CYOA
 //
 //  Created by Luigi Anonymus on 2020-01-25.
@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import Firebase;
+import Firebase
+import AVFoundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class StoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
     var myStory = Story()
     var currentOption : Option?
+    let audio = AudioPlayer()
     let optionID = "optionsCellID"
     let myStorySegueID = "segueToMyStory"
     
@@ -61,14 +63,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         choiceButton.alpha = 1
     }
     
-
-
-//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        let cell  = tableView.cellForRow(at: indexPath)
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        cell?.contentView.backgroundColor = .clear
-//    }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.alpha = 0
         UIView.animate(withDuration: 2, delay: 0.8 * Double(indexPath.row), animations: {cell.alpha = 1})
@@ -109,6 +103,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func revealNextChapter(finished: Bool){
+        audio.playSound(sound: "new_page.mp3")
         updateChapterLabel()
         updateStoryText()
         UIView.animate(withDuration: 1.5, animations: {self.storyText.alpha = 1.0})
