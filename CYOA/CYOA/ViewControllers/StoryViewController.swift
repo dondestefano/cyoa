@@ -2,7 +2,7 @@
 //  StoryViewController.swift
 //  CYOA
 //
-//  Created by Luigi Anonymus on 2020-01-25.
+//  Created by Michael De Stefano on 2020-01-25.
 //  Copyright © 2020 Michael De Stefano. All rights reserved.
 //
 
@@ -37,7 +37,6 @@ class StoryViewController: UIViewController, UITableViewDataSource, UITableViewD
         optionsTableView.dataSource = self
         optionsTableView.delegate = self
         optionsTableView.backgroundColor = .clear
-        // Do any additional setup after loading the view
     }
 
 //* TableView functions *//
@@ -57,6 +56,7 @@ class StoryViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // If a cell is selected - Update currentOption and enable the choiceButton
         let option = myStory.availableOptions[indexPath.row]
         currentOption = option
         choiceButton.isUserInteractionEnabled = true
@@ -64,6 +64,7 @@ class StoryViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Animate the cells to fade in.
         cell.alpha = 0
         UIView.animate(withDuration: 2, delay: 0.8 * Double(indexPath.row), animations: {cell.alpha = 1})
     }
@@ -103,6 +104,7 @@ class StoryViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func revealNextChapter(finished: Bool){
+        // Reveal the next chapter with a fade-in and scibble sound.
         audio.playSound(sound: "new_page.mp3")
         updateChapterLabel()
         updateStoryText()

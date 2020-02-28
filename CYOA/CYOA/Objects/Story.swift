@@ -2,7 +2,7 @@
 //  Story.swift
 //  CYOA
 //
-//  Created by Luigi Anonymus on 2020-01-29.
+//  Created by Michael De Stefano on 2020-01-29.
 //  Copyright © 2020 Michael De Stefano. All rights reserved.
 //
 
@@ -59,7 +59,6 @@ class Story {
             if ((self.player?.checkIfReasonIsStrongerThanFear) != nil) {
                 self.readLastChapterFromDB(chapterName: "TrueEnding", completion: completion)
             } else {
-                // If no story ending choice was made, load the next chapter in order.
                 self.readLastChapterFromDB(chapterName: "SoClose", completion: completion)
             }
         }
@@ -71,13 +70,8 @@ class Story {
             }
         }
         else {
+            // If no story ending choice was made, load the next chapter in order.
             self.readChapterFromDB(chapterNumber: currentChapter.chapterNumber, completion: completion)
-        }
-    }
-    
-    func checkEnding(completion: @escaping () -> ()){
-        if currentOption?.vitalChoice == "YouMonster"{
-            
         }
     }
 

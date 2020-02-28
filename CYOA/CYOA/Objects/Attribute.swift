@@ -2,7 +2,7 @@
 //  Attribute.swift
 //  CYOA
 //
-//  Created by Luigi Anonymus on 2020-02-18.
+//  Created by Michael De Stefano on 2020-02-18.
 //  Copyright © 2020 Michael De Stefano. All rights reserved.
 //
 

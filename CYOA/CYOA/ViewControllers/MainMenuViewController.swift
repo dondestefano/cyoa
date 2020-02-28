@@ -2,7 +2,7 @@
 //  MainMenuViewController.swift
 //  CYOA
 //
-//  Created by Luigi Anonymus on 2020-02-11.
+//  Created by Michael De Stefano on 2020-02-11.
 //  Copyright © 2020 Michael De Stefano. All rights reserved.
 //
 
@@ -26,13 +26,12 @@ class MainMenuViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        // Sign in and get the users data from Firebase
         self.signIn()
         self.myStory.loadCurrentChapterfromDB {self.checkContinue()}
         self.myStory.readPathFromDB()
         self.myStory.player?.loadPlayerFromDB()
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
 
     
@@ -103,12 +102,12 @@ class MainMenuViewController: UIViewController {
 
 //* Animations *//
     func checkContinue() {
-        // If current chapter has a number - show continue.
+        // If current chapter is anything but 0 - show continue.
         if self.myStory.currentChapter.chapterNumber != 0 {
             continueButton.isUserInteractionEnabled = true
             continueButton.alpha = 1
         } else {
-            // If current chapter doesn't have a chapter - hide continue.
+            // If current chapter is 0 - hide continue.
             continueButton.isUserInteractionEnabled = false
             continueButton.alpha = 0.4
         }
